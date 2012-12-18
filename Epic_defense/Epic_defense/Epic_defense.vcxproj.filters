@@ -13,10 +13,164 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Файлы шейдеров">
+      <UniqueIdentifier>{df437157-a435-4605-bdab-2efcc7623933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\game">
+      <UniqueIdentifier>{c62b7a49-3232-47a8-b816-1de1a47a8e59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\game\basics">
+      <UniqueIdentifier>{23da60bf-667e-4e6f-89f7-85a4d7fee22d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Заголовочные файлы\game\models">
+      <UniqueIdentifier>{5ede10b4-f55b-4b7b-8dc7-3142911c51f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\game">
+      <UniqueIdentifier>{87c6e75a-5170-4bc2-9fd7-250db7670c7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы исходного кода\game\basics">
+      <UniqueIdentifier>{7ab86a5e-ba83-467e-bc3f-c4da2ff8ce87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+    <ClCompile Include="OpenGL.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="matrix.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="shader_manager.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="texture_manager.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="tga.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="timer.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="tools.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+    <ClCompile Include="AIObject.cpp">
+      <Filter>Файлы исходного кода\game\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Файлы исходного кода\game\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Файлы исходного кода\game\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalObject.cpp">
+      <Filter>Файлы исходного кода\game\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicObject.cpp">
+      <Filter>Файлы исходного кода\game\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicObject.cpp">
+      <Filter>Файлы исходного кода\game\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Файлы исходного кода\game\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundObject.cpp">
+      <Filter>Файлы исходного кода\game\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="EpicDefense.cpp">
+      <Filter>Файлы исходного кода</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="OpenGL.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="defines.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="log.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="shader_manager.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="texture_manager.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="tga.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="timer.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="tools.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="AIObject.h">
+      <Filter>Заголовочные файлы\game\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Заголовочные файлы\game\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Заголовочные файлы\game\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalObject.h">
+      <Filter>Заголовочные файлы\game\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicObject.h">
+      <Filter>Заголовочные файлы\game\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicObject.h">
+      <Filter>Заголовочные файлы\game\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Заголовочные файлы\game\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundObject.h">
+      <Filter>Заголовочные файлы\game\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelTemplate.h">
+      <Filter>Заголовочные файлы\game\models</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelGround.h">
+      <Filter>Заголовочные файлы\game\models</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDefines.h">
+      <Filter>Заголовочные файлы\game\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelSpawn.h">
+      <Filter>Заголовочные файлы\game\models</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelTree.h">
+      <Filter>Заголовочные файлы\game\models</Filter>
+    </ClInclude>
+    <ClInclude Include="EpicDefense.h">
+      <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelWall.h">
+      <Filter>Заголовочные файлы\game\models</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelGoblin.h">
+      <Filter>Заголовочные файлы\game\models</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fragment.fsh">
+      <Filter>Файлы шейдеров</Filter>
+    </None>
+    <None Include="vertex.vsh">
+      <Filter>Файлы шейдеров</Filter>
+    </None>
   </ItemGroup>
 </Project>
