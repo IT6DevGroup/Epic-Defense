@@ -164,6 +164,9 @@
     <ClInclude Include="ModelGoblin.h">
       <Filter>Заголовочные файлы\game\models</Filter>
     </ClInclude>
+    <ClInclude Include="Models.h">
+      <Filter>Заголовочные файлы\game\models</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="fragment.fsh">

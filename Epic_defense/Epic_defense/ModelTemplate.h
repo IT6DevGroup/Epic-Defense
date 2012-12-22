@@ -41,7 +41,7 @@ public:
 		vertices.dataSize = sizeof(vertex);
 	}
 
-	void init();
+	void initGraphic();
 	void initTextures();
 
 	std::vector <vertex> getVerticesList(){

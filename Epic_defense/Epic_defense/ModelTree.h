@@ -8,7 +8,7 @@ public:
 	void initTextures(){
 		TexturesNames.push_back("tree.tga");
 	}
-	void init(float posX, float posY, float zOffset = 0.0f){
+	void initGraphic(float posX, float posY, float zOffset = 0.0f){
 		vcount = 6;
 		initTextures();
 

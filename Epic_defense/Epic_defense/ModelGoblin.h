@@ -5,11 +5,16 @@
 class ModelGoblin: public ModelTemplate {
 	static const GLint width = 13;
 	static const GLint height = 23;
+
+	static const bool moving = true;
+	static const GLint speed = 2; // —корость от 0 до 10
+
+	static const GLint health = 100;
 public:
 	void initTextures(){
 		TexturesNames.push_back("goblin.tga");
 	}
-	void init(float posX, float posY, float zOffset = 0.0f){
+	void initGraphic(float posX, float posY, float zOffset = 0.0f){
 		vcount = 6;
 		initTextures();
 		

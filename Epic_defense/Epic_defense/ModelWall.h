@@ -12,7 +12,7 @@ public:
 	void initTextures(){
 		TexturesNames.push_back("wall.tga");
 	}
-	void init(float posX, float posY){
+	void initGraphic(float posX, float posY){
 		vcount = 6;
 		initTextures();
 

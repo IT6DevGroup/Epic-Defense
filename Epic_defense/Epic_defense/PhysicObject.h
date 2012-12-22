@@ -1,8 +1,11 @@
 #pragma once
+
+#include "Models.h"
+
 class CPhysicObject
 {
 public:
-	CPhysicObject(void);
+	CPhysicObject(GLint model);
 	~CPhysicObject(void);
 };
 

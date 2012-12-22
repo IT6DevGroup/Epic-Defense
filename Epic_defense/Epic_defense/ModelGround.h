@@ -7,7 +7,7 @@ public:
 	void initTextures(){
 		ModelGround::TexturesNames.push_back("grass.tga");
 	}
-	void init(float posX, float posY){
+	void initGraphic(float posX, float posY){
 		vcount = 150;
 		initTextures();
 		

@@ -12,7 +12,7 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 		{
 			ModelGround *ground;
 			ground = new ModelGround();
-			ground->init(posX,posY);
+			ground->initGraphic(posX,posY);
 
 			mesh.vcount = ground->getVerticesCount();
 			mesh.model = model;
@@ -44,7 +44,7 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 		{
 			ModelTree *tree;
 			tree = new ModelTree();
-			tree->init(posX,posY, zOffset);
+			tree->initGraphic(posX,posY, zOffset);
 
 			mesh.vcount = tree->getVerticesCount();
 			mesh.model = model;
@@ -76,7 +76,7 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 		{
 			ModelSpawn *spawn;
 			spawn = new ModelSpawn();
-			spawn->init(posX,posY);
+			spawn->initGraphic(posX,posY);
 
 			mesh.vcount = spawn->getVerticesCount();
 			mesh.model = model;
@@ -108,7 +108,7 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 		{
 			ModelWall *wall;
 			wall = new ModelWall();
-			wall->init(posX,posY);
+			wall->initGraphic(posX,posY);
 
 			mesh.vcount = wall->getVerticesCount();
 			mesh.model = model;
@@ -140,7 +140,7 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 		{
 			ModelGoblin *goblin;
 			goblin = new ModelGoblin();
-			goblin->init(posX,posY);
+			goblin->initGraphic(posX,posY);
 
 			mesh.vcount = goblin->getVerticesCount();
 			mesh.model = model;
