@@ -1,8 +1,11 @@
 #pragma once
+
+#include "Models.h"
+
 class CSoundObject
 {
 public:
-	CSoundObject(void);
+	CSoundObject(GLint model);
 	~CSoundObject(void);
 };
 

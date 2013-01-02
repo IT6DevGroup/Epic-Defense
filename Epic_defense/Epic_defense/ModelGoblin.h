@@ -3,6 +3,8 @@
 #include "ModelTemplate.h"
 
 class ModelGoblin: public ModelTemplate {
+public:
+
 	static const GLint width = 13;
 	static const GLint height = 23;
 
@@ -10,7 +12,7 @@ class ModelGoblin: public ModelTemplate {
 	static const GLint speed = 2; // —корость от 0 до 10
 
 	static const GLint health = 100;
-public:
+
 	void initTextures(){
 		TexturesNames.push_back("goblin.tga");
 	}

@@ -7,6 +7,10 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 
 	int vboIndex = 0; // Индексы ВБО (для понятливости), инкрементится с добавление ВБО
 
+	mesh.model = model;
+	mesh.p.x = posX;
+	mesh.p.y = posY;
+
 	switch (model) {
 	case GAME_MODEL_GROUND:
 		{
@@ -15,7 +19,6 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 			ground->initGraphic(posX,posY);
 
 			mesh.vcount = ground->getVerticesCount();
-			mesh.model = model;
 
 			glGenVertexArrays(1, &mesh.VAO);
 			glBindVertexArray(mesh.VAO);
@@ -185,6 +188,9 @@ void CGraphicObject::Move(float x, float y, float z/*,  GLuint shaderProgram*/){
 			ptr[k] += x; // x
 			ptr[k+1] += y; // y
 			ptr[k+2] += z;
+			/*ptr[k] = x; // x
+			ptr[k+1] = y; // y
+			ptr[k+2] = z;*/
 			k += offset;
 		}
 		glUnmapBuffer(GL_ARRAY_BUFFER);
@@ -298,6 +304,15 @@ std::vector <GLuint> CGraphicObject::getVBOVector(){
 	return this->mesh.VBOVector;
 }
 
-int CGraphicObject::getVerticesCount(){
+GLint CGraphicObject::getVerticesCount(){
 	return this->mesh.vcount;
+}
+
+POINT CGraphicObject::getCoords(){
+	POINT pOut;
+
+	pOut.x = mesh.p.x;
+	pOut.y = mesh.p.y;
+
+	return pOut;
 }

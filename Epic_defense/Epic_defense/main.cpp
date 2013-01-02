@@ -50,7 +50,7 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			addTrees(shader_program);
 			addWallAndSpawns(shader_program);			
 
-			CGlobalObject *goblin = new CGlobalObject(GAME_MODEL_GOBLIN, shader_program, 0.0f, 0.0f);
+									CGlobalObject *goblin = new CGlobalObject(GAME_MODEL_GOBLIN, shader_program, 0.0f, 0.0f);
 			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, goblin);
 
 			translateMatrixLocation = glGetUniformLocation (shader_program, "TranslateMatrix");
@@ -155,8 +155,8 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_KEYDOWN:
 		{
 			//CGraphicObject *graphicObject = CGame::Instance().getGraphicObject(GAME_SCENE_MAIN, 1);
-			
-			
+
+
 			switch(wParam){
 			case VK_LEFT:
 				translateMatrix[3] += 15.0f;
@@ -180,7 +180,7 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			glUniformMatrix4fv (translateMatrixLocation, 1, GL_FALSE, translateMatrix);
 		}
 		break;
-		
+
 	}
 
 	return DefWindowProc (hWnd, message, wParam, lParam);
@@ -258,8 +258,14 @@ BOOL WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 				glActiveTexture (GL_TEXTURE0);
 
 				for(int i = 0; i < CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN); i++){
+					CAIObject *AIObject = CGame::Instance().getAIObject(GAME_SCENE_MAIN, i);
+					// Передвижение и прорисовка
 					CGraphicObject *graphicObject = CGame::Instance().getGraphicObject(GAME_SCENE_MAIN, i);
-
+					if (AIObject->getMoving()) {
+						POINT pNow = graphicObject->getCoords();
+						POINT p = AIObject->nextStep(pNow);
+						graphicObject->Move(p.x, p.y);
+					}
 					glBindVertexArray(graphicObject->getVAO());
 					graphicObject->DrawParamsSet(shader_program);
 					glDrawArrays(GL_TRIANGLES, 0, graphicObject->getVerticesCount());

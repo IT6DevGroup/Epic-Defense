@@ -1,13 +1,14 @@
-﻿Построение начато 18.12.2012 12:52:53.
-     1>Проект "G:\Sync\Программирование\Epic_defense\Epic_defense\Epic_defense.vcxproj" в узле 2 (целевые объекты Build).
+﻿Построение начато 02.01.2013 21:48:33.
+     1>Проект "G:\Sync\Программирование\Epic-Defense\Epic_defense\Epic_defense\Epic_defense.vcxproj" в узле 2 (целевые объекты Build).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"E:\Sync\Программирование\Epic-Defense\Epic_defense\include" /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>g:\sync\программирование\epic_defense\epic_defense\modelspawn.h(11): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
-     1>g:\sync\программирование\epic_defense\epic_defense\modelwall.h(10): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
-     1>g:\sync\программирование\epic_defense\epic_defense\main.cpp(130): warning C4018: <: несоответствие типов со знаком и без знака
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelspawn.h(11): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelwall.h(10): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\main.cpp(130): warning C4018: <: несоответствие типов со знаком и без знака
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\main.cpp(267): warning C4244: аргумент: преобразование "LONG" в "float", возможна потеря данных
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\Sync\Программирование\Epic_defense\Debug\Epic_defense.exe" /INCREMENTAL /NOLOGO opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"G:\Sync\Программирование\Epic_defense\Debug\Epic_defense.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\Sync\Программирование\Epic_defense\Debug\Epic_defense.lib" /MACHINE:X86 Debug\AIObject.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\Sync\Программирование\Epic-Defense\Epic_defense\Debug\Epic_defense.exe" /INCREMENTAL /NOLOGO opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"G:\Sync\Программирование\Epic-Defense\Epic_defense\Debug\Epic_defense.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\Sync\Программирование\Epic-Defense\Epic_defense\Debug\Epic_defense.lib" /MACHINE:X86 Debug\AIObject.obj
          Debug\EpicDefense.obj
          Debug\Game.obj
          Debug\GameObject.obj
@@ -25,9 +26,9 @@
          Debug\tga.obj
          Debug\timer.obj
          Debug\tools.obj
-         Epic_defense.vcxproj -> G:\Sync\Программирование\Epic_defense\Debug\Epic_defense.exe
-     1>Построение проекта "G:\Sync\Программирование\Epic_defense\Epic_defense\Epic_defense.vcxproj" завершено (целевые объекты Build).
+         Epic_defense.vcxproj -> G:\Sync\Программирование\Epic-Defense\Epic_defense\Debug\Epic_defense.exe
+     1>Построение проекта "G:\Sync\Программирование\Epic-Defense\Epic_defense\Epic_defense\Epic_defense.vcxproj" завершено (целевые объекты Build).
 
 Построение успешно завершено.
 
-Затраченное время: 00:00:18.59
+Затраченное время: 00:00:05.70

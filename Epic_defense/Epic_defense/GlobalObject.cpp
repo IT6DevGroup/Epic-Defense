@@ -1,13 +1,13 @@
 #include "GlobalObject.h"
 
 
-CGlobalObject::CGlobalObject(GLint model, GLuint shaderProgram, float posX, float posY, float zOffset)
+CGlobalObject::CGlobalObject(GLint model, GLuint shaderProgram, GLfloat posX, GLfloat posY, GLfloat zOffset)
 {
 	this->graphicObj = new CGraphicObject(model, shaderProgram, posX, posY, zOffset);
-	this->physicObj = new CPhysicObject;
-	this->gameObj = new CGameObject;
-	this->soundObj = new CSoundObject;
-	this->aiObj = new CAIObject;
+	this->physicObj = new CPhysicObject(model);
+	this->gameObj = new CGameObject(model);
+	this->soundObj = new CSoundObject(model);
+	this->aiObj = new CAIObject(model, posX, posY);
 }
 
 

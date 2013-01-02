@@ -1,8 +1,11 @@
 #pragma once
+
+#include "Models.h"
+
 class CGameObject
 {
 public:
-	CGameObject(void);
+	CGameObject(GLint model);
 	~CGameObject(void);
 };
 

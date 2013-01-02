@@ -15,6 +15,7 @@ class CGraphicObject
 		std::vector <GLuint> VBOVector;
 		GLuint VBO;
 		GLint vcount, icount;
+		POINT p;
 	};
 	MESH mesh;
 	GLfloat	projectionMatrix[16];
@@ -29,6 +30,7 @@ public:
 
 	GLuint getVAO();
 	std::vector <GLuint> getVBOVector();
-	int getVerticesCount();
+	GLint getVerticesCount();
+	POINT getCoords();
 };
 

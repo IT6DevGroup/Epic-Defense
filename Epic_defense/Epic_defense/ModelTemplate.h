@@ -34,8 +34,19 @@ protected:
 	int icount; //  ол-во индексов
 	std::vector <std::string> TexturesNames; // “екстур может быть несколько: например, если требуетс€ учитывать поворот персонажа (в 2D)
 	VBOdata <vertex> vertices; 
+
+
 public:
 	//std::vector <vertex> verts;
+
+	// «начени€ дл€ моделей по умолчанию
+	static const GLint width = 10;
+	static const GLint height = 10;
+
+	static const bool moving = false;
+	static const GLint speed = 1; // —корость от 0 до 10
+
+	static const GLint health = 100;
 
 	ModelTemplate(){
 		vertices.dataSize = sizeof(vertex);
