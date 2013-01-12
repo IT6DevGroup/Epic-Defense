@@ -50,8 +50,13 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			addTrees(shader_program);
 			addWallAndSpawns(shader_program);			
 
-									CGlobalObject *goblin = new CGlobalObject(GAME_MODEL_GOBLIN, shader_program, 0.0f, 0.0f);
+			CGlobalObject *goblin = new CGlobalObject(GAME_MODEL_GOBLIN, shader_program, 0.0f, 0.0f);
 			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, goblin);
+
+			/* PROBLEM 
+			CGlobalObject *goblin2 = new CGlobalObject(GAME_MODEL_GOBLIN, shader_program, 2.0f, 2.0f);
+			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, goblin2);
+			*/
 
 			translateMatrixLocation = glGetUniformLocation (shader_program, "TranslateMatrix");
 			GetIdentityMatrix(translateMatrix);
@@ -266,6 +271,7 @@ BOOL WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 						POINT p = AIObject->nextStep(pNow);
 						graphicObject->Move(p.x, p.y);
 					}
+					// ÔÓÍÊÖÈß ÈÈ
 					glBindVertexArray(graphicObject->getVAO());
 					graphicObject->DrawParamsSet(shader_program);
 					glDrawArrays(GL_TRIANGLES, 0, graphicObject->getVerticesCount());

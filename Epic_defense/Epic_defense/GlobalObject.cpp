@@ -10,7 +10,6 @@ CGlobalObject::CGlobalObject(GLint model, GLuint shaderProgram, GLfloat posX, GL
 	this->aiObj = new CAIObject(model, posX, posY);
 }
 
-
 CGlobalObject::~CGlobalObject(void)
 {
 }

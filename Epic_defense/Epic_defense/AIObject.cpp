@@ -75,7 +75,7 @@ POINT CAIObject::nextStep(POINT p){
 			goblin = new ModelGoblin();
 
 			pOut.x = p.x + 1;
-			pOut.y = p.y + 1;
+			pOut.y = p.y + 1;//10*sin(p.x);//p.y + 1;
 
 			delete goblin;
 		}

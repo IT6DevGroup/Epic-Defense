@@ -177,6 +177,10 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 }
 
 void CGraphicObject::Move(float x, float y, float z/*,  GLuint shaderProgram*/){
+	GLfloat xDiff = x - mesh.p.x;
+	GLfloat yDiff = y - mesh.p.y;
+	//GLfloat zDiff = x - mesh.p.x;
+
 	glBindVertexArray(mesh.VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, mesh.VBOVector[0]);
 	float *ptr = (float*)glMapBuffer(GL_ARRAY_BUFFER, GL_READ_WRITE);
@@ -185,17 +189,20 @@ void CGraphicObject::Move(float x, float y, float z/*,  GLuint shaderProgram*/){
 	{
 		int k = 0;
 		for(int i = 0; i < mesh.vcount; i++){
-			ptr[k] += x; // x
-			ptr[k+1] += y; // y
-			ptr[k+2] += z;
+			ptr[k] += xDiff; // x
+			ptr[k+1] += yDiff; // y
+			//ptr[k+2] += z;
 			/*ptr[k] = x; // x
 			ptr[k+1] = y; // y
 			ptr[k+2] = z;*/
 			k += offset;
 		}
 		glUnmapBuffer(GL_ARRAY_BUFFER);
-	}
 
+		mesh.p.x = x;
+		mesh.p.y = y;
+	}
+	
 	glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
