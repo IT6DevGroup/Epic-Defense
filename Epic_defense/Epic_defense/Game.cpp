@@ -2,6 +2,7 @@
 
 CGame::CGame(void)
 {
+	paths = true;
 }
 
 CGame::~CGame(void)
@@ -63,6 +64,14 @@ void CGame::LoadTextures(){
 
 	GLuint textureSamplerLocation = glGetUniformLocation (shader_program, "diffuseTexture");
 	glUniform1i (textureSamplerLocation, 0);
+}
+
+bool CGame::getPathsExistence(){
+	return paths;
+}
+
+void CGame::DisablePaths(){
+	paths = false;
 }
 
 

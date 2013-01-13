@@ -108,19 +108,35 @@ void addTrees(GLuint shaderProgram){
 	}*/
 }
 
-void addWallAndSpawns(GLuint shaderProgram){
-	GLint spawnNum = 4;
+void addWallSpawnsPath(GLuint shaderProgram){
+	GLint spawnNum = 3; 
 	GLint wallNum = GAME_DEFAULT_GROUND_SIZE / ModelWall::getHeight();
 	GLint wallHeight = wallNum * ModelWall::getHeight() - spawnNum * ModelSpawn::getHeight();
 	wallNum = wallHeight / ModelWall::getHeight();
-	GLint objNum = wallNum + spawnNum ;//+ 1; // +1 чтобы учесть оставшийся отрезок
-	for (int i = 0; i < objNum; i++){
-		if ((i % spawnNum) == 0){
-			CGlobalObject *spawn = new CGlobalObject(GAME_MODEL_SPAWN,shader_program,0.0f, i * ModelWall::getHeight());
-			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, spawn);
-		} else {
-			CGlobalObject *wall = new CGlobalObject(GAME_MODEL_WALL,shader_program,0.0f, i * ModelSpawn::getHeight());
-			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, wall);
+	GLint objNum = wallNum + spawnNum; //+ 1; // +1 чтобы учесть оставшийся отрезок
+	GLint oneWallPlot = objNum / spawnNum; // Длина одного участка стены
+
+	if(spawnNum == 3){ // Дорожки могут быть только если у нас три спауна
+		for (int i = 0; i < objNum; i++){
+			if (((i+1) % oneWallPlot) == 0){ // спаун
+				CGlobalObject *spawn = new CGlobalObject(GAME_MODEL_SPAWN,shader_program,0.0f, i * ModelWall::getHeight());
+				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, spawn);
+			} else {
+				CGlobalObject *wall = new CGlobalObject(GAME_MODEL_WALL,shader_program,0.0f, i * ModelSpawn::getHeight());
+				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, wall);
+			}
+		}
+	} else {
+		CGame::Instance().DisablePaths();
+		for (int i = 0; i < objNum; i++){
+			if (((i+1) % oneWallPlot) == 0){ // спаун
+				CGlobalObject *spawn = new CGlobalObject(GAME_MODEL_SPAWN,shader_program,0.0f, i * ModelWall::getHeight());
+				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, spawn);
+			} else {
+				CGlobalObject *wall = new CGlobalObject(GAME_MODEL_WALL,shader_program,0.0f, i * ModelSpawn::getHeight());
+				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, wall);
+			}
 		}
 	}
 }
+

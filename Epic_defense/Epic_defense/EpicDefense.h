@@ -9,4 +9,4 @@
 #define GAME_MAX_TREES 120
 
 void addTrees(GLuint shaderProgram);
-void addWallAndSpawns(GLuint shaderProgram);
+void addWallSpawnsPath(GLuint shaderProgram);

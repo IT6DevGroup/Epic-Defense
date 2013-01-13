@@ -19,6 +19,7 @@ class CGame
 	std::map <std::string, CScene> scenes;
 	//std::vector <CScene> scenes;
 
+	static bool paths;
 public:
 
 	static CGame &Instance(){
@@ -32,6 +33,7 @@ public:
 	CScene getScene(std::string name);
 	int getSceneCount();
 	int getObjectsCountOnScene(std::string sceneName);
+	bool getPathsExistence();
 
 	// Version 2
 	CGraphicObject* getGraphicObject(std::string sceneName, int globalObjectId);
@@ -41,6 +43,7 @@ public:
 	CAIObject* getAIObject(std::string sceneName, int globalObjectId);
 
 	void LoadTextures();
+	void DisablePaths();
 	//void addScene(CScene *sc);
 	//CScene getScene(int i);
 };

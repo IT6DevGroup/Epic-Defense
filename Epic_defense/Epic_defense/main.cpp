@@ -48,7 +48,7 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			CGame::Instance().addScene(mainScene, GAME_SCENE_MAIN);
 			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, ground);
 			addTrees(shader_program);
-			addWallAndSpawns(shader_program);			
+			addWallSpawnsPath(shader_program);			
 
 			CGlobalObject *goblin = new CGlobalObject(GAME_MODEL_GOBLIN, shader_program, 0.0f, 0.0f);
 			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, goblin);
