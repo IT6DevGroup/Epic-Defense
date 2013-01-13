@@ -3,6 +3,7 @@
 #include "ModelTemplate.h"
 
 class ModelTree: public ModelTemplate {
+	// Эту переменную следует заменить на новые width и height с соответствующими изменениями в addTrees()
 	static const GLint TreeSize = 70;
 public:
 	void initTextures(){

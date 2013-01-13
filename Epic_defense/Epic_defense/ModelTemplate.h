@@ -12,9 +12,9 @@
 #define GAME_MODEL_PATH 7
 
 #define GAME_DEFAULT_GROUND_DISTANCE 10.0f
-#define GAME_DEFAULT_GROUND_SIZE 1125.0f
+#define GAME_DEFAULT_GROUND_SIZE 1120.0f
 
-// Шаблон для создания VBO со всей необходимой информацией
+// Буфферов VBO может быть несколько. VBOdata - шаблон для создания VBO со всей необходимой информацией
 template <class InfoType>
 struct VBOdata {
 	GLsizeiptr dataSize;
@@ -29,23 +29,25 @@ struct vertex
 	//float r, g ,b; // цвет
 };
 
+// ModelTemplate необходим для задания параметров моделей по умолчанию, чтобы все они были разновидностями одной сущности
 class ModelTemplate {
 protected:
 	int vcount; // Кол-во вершин
-	int icount; // Кол-во индексов
+	int icount; // Кол-во индексов (сейчас не используется)
 	std::vector <std::string> TexturesNames; // Текстур может быть несколько: например, если требуется учитывать поворот персонажа (в 2D)
 	VBOdata <vertex> vertices; 
 
-
 public:
-	//std::vector <vertex> verts;
 
 	// Значения для моделей по умолчанию
+
+	// Ширина/высота картинки в пикселях
 	static const GLint width = 10;
 	static const GLint height = 10;
 
 	static const bool moving = false;
-	static const GLint speed = 1; // Скорость от 0 до 10
+	// Скорость от 0 до 10
+	static const GLint speed = 1;
 
 	static const GLint health = 100;
 
@@ -66,5 +68,6 @@ public:
 	int getVerticesCount(){
 		return vcount;
 	}
+	// Метод getTextureName нужен для возможности получения различных текстур при каких-либо особых обстоятельствах
 	std::string getTextureName(/* Какие-либо условия */);
 };

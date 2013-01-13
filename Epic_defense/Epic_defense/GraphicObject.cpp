@@ -1,5 +1,25 @@
 #include "GraphicObject.h"
 
+/*
+	КАК ДОБАВИТЬ МОДЕЛЬ
+
+	В файле ModelTemplate создаём макрос с условным именем модели. То есть, например, GAME_MODEL_GROUND
+	Далее нужно создать класс модели (с приставкой Model), унаследованный от ModelTemplate.
+	Проставив в нём нужные данные, необходимо добавить сюда в конструкторе CGraphicObject в switch(model) новый case с добавленным макросом
+	и выполнить в нём все нужны функции. Сейчас можно просто скопировать любой другой case и поменять названия классов и переменных.
+
+	Далее в функции DrawParamsSet() добавляем такой же case, как в конструктор, содержимое которого тоже будет таким же,
+	как у других кейзов этой функции, только с другими названиями
+
+	Текстуру обязательно надо добавить в фунцкции CGame::LoadTextures()
+
+	Всё, можно писать addObjectToScene нового объекта в main.cpp
+
+	Этот процесс распространяется и на другие файлы объектов. Пока задействованы только GraphicObject и AIObject, и в них обоих
+	следует прописывать эти кейзы (см. AIObject.cpp)
+*/
+
+// В конструкторе этого объекта в зависимости от модели записываются данные VAO и VBO. То есть, добавляется объект (картинка)
 CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, float posY, float zOffset)
 {
 	GLuint inVertexLocation;
@@ -171,30 +191,62 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 			delete goblin;
 		}
 		break;
+	case GAME_MODEL_PATH:
+		{
+			ModelPath *path;
+			path = new ModelPath();
+			path->initGraphic(posX,posY);
+
+			mesh.vcount = path->getVerticesCount();
+			mesh.model = model;
+
+			glGenVertexArrays(1, &mesh.VAO);
+			glBindVertexArray(mesh.VAO);
+
+			GLuint vbo1;
+			mesh.VBOVector.push_back(vbo1);
+
+			glGenBuffers (1, &mesh.VBOVector[vboIndex]);
+			glBindBuffer (GL_ARRAY_BUFFER, mesh.VBOVector[vboIndex]);
+			glBufferData (GL_ARRAY_BUFFER,  path->getVerticesList().size() * sizeof(vertex), (GLvoid *) path->getVerticesList().data(), GL_STATIC_DRAW);
+
+			inVertexLocation = glGetAttribLocation (shader_program, "inVertex");
+			glEnableVertexAttribArray (inVertexLocation);
+
+			inTextureCoordinatesLocation = glGetAttribLocation (shader_program, "inTextureCoordinates");
+			glEnableVertexAttribArray (inTextureCoordinatesLocation);
+
+			glVertexAttribPointer (inVertexLocation, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
+			glVertexAttribPointer (inTextureCoordinatesLocation, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), (GLvoid *)(sizeof(GLfloat) * 3));
+			glBindVertexArray(0);
+
+			delete path;
+		}
+		break;
 	default: // Неизвестная модель
 		break;
 	}
 }
 
-void CGraphicObject::Move(float x, float y, float z/*,  GLuint shaderProgram*/){
+void CGraphicObject::Move(float x, float y, float z){
+
+	// Высчитываем разницу, чтобы определить, на сколько надо передвинуть объект
 	GLfloat xDiff = x - mesh.p.x;
 	GLfloat yDiff = y - mesh.p.y;
-	//GLfloat zDiff = x - mesh.p.x;
 
 	glBindVertexArray(mesh.VAO);
 	glBindBuffer(GL_ARRAY_BUFFER, mesh.VBOVector[0]);
 	float *ptr = (float*)glMapBuffer(GL_ARRAY_BUFFER, GL_READ_WRITE);
-	int offset = 5; // Грубо говоря, кол-во элементов в структуре вершины
+	int offset = 5; // Грубо говоря, эта переменная равна кол-ву элементов в структуре вершины (структура VERTEX)
+
+	// Если удачно получили указатель (иначе glMapBuffer() вернёт false), работаем с данными
 	if(ptr)
 	{
 		int k = 0;
 		for(int i = 0; i < mesh.vcount; i++){
 			ptr[k] += xDiff; // x
 			ptr[k+1] += yDiff; // y
-			//ptr[k+2] += z;
-			/*ptr[k] = x; // x
-			ptr[k+1] = y; // y
-			ptr[k+2] = z;*/
+
 			k += offset;
 		}
 		glUnmapBuffer(GL_ARRAY_BUFFER);
@@ -290,6 +342,22 @@ void CGraphicObject::DrawParamsSet(GLuint shaderProgram){
 			glUniformMatrix4fv (textureMatrixLocation, 1, GL_FALSE, textureMatrix);	
 
 			delete goblin;
+		}
+		break;
+	case GAME_MODEL_PATH:
+		{
+			ModelPath *path;
+			path = new ModelPath();
+			path->initTextures();
+			std::string textureName = path->getTextureName();
+			TEXTUREMANAGER::GetInstance().SetTexture(textureName);
+
+			GetIdentityMatrix(textureMatrix);
+
+			textureMatrix[3]	= 0.0f;
+			glUniformMatrix4fv (textureMatrixLocation, 1, GL_FALSE, textureMatrix);	
+
+			delete path;
 		}
 		break;
 	default:

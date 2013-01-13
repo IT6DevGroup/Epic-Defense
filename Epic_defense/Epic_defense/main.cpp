@@ -52,12 +52,14 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 			CGlobalObject *goblin = new CGlobalObject(GAME_MODEL_GOBLIN, shader_program, 0.0f, 0.0f);
 			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, goblin);
-
-			/* PROBLEM 
-			CGlobalObject *goblin2 = new CGlobalObject(GAME_MODEL_GOBLIN, shader_program, 2.0f, 2.0f);
+			 
+			CGlobalObject *goblin2 = new CGlobalObject(GAME_MODEL_GOBLIN, shader_program, 50.0f, 2.0f);
 			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, goblin2);
-			*/
 
+			CGlobalObject *path = new CGlobalObject(GAME_MODEL_PATH, shader_program, 50.0f, 2.0f);
+			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, path);
+			
+			// translateMatrix задаёт положение камеры
 			translateMatrixLocation = glGetUniformLocation (shader_program, "TranslateMatrix");
 			GetIdentityMatrix(translateMatrix);
 
@@ -262,16 +264,20 @@ BOOL WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 				glActiveTexture (GL_TEXTURE0);
 
+				/*
+				* TODO: Сортировка по убыванию координаты Y объектов сцены для правильного отображения. 
+				* Сортировка должна быть оптимальна для почти упорядоченной последовательности и должна находиться в классе CScene.
+				* Лучше сделать как вызов CGame::Instance().sortObjectsOnScene(std::string sceneName) с последующим вызовом метода сцены.
+				*/
+
+				// Цикл прорисовки объектов сцены GAME_SCENE_MAIN
 				for(int i = 0; i < CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN); i++){
 					CAIObject *AIObject = CGame::Instance().getAIObject(GAME_SCENE_MAIN, i);
-					// Передвижение и прорисовка
 					CGraphicObject *graphicObject = CGame::Instance().getGraphicObject(GAME_SCENE_MAIN, i);
-					if (AIObject->getMoving()) {
-						POINT pNow = graphicObject->getCoords();
-						POINT p = AIObject->nextStep(pNow);
-						graphicObject->Move(p.x, p.y);
-					}
-					// ФУНКЦИЯ ИИ
+
+					POINT pNow = graphicObject->getCoords();
+					AIObject->action(pNow, graphicObject);
+
 					glBindVertexArray(graphicObject->getVAO());
 					graphicObject->DrawParamsSet(shader_program);
 					glDrawArrays(GL_TRIANGLES, 0, graphicObject->getVerticesCount());
@@ -281,7 +287,7 @@ BOOL WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 				glBindTexture (GL_TEXTURE_2D, 0);
 
-				//				glError = glGetError ();
+				glError = glGetError();
 
 				SwapBuffers (hdc);
 

@@ -1,11 +1,9 @@
 #pragma once
 
-#include "GraphicObject.h"
-#include "PhysicObject.h"
-#include "GameObject.h"
-#include "SoundObject.h"
+// Подключение остальных классов объектов содержится в AIObject.h
 #include "AIObject.h"
 
+// Глобальный объект - объединение в один всех объектов
 class CGlobalObject
 {
 	CGraphicObject *graphicObj;

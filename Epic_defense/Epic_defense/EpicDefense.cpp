@@ -113,7 +113,7 @@ void addWallAndSpawns(GLuint shaderProgram){
 	GLint wallNum = GAME_DEFAULT_GROUND_SIZE / ModelWall::getHeight();
 	GLint wallHeight = wallNum * ModelWall::getHeight() - spawnNum * ModelSpawn::getHeight();
 	wallNum = wallHeight / ModelWall::getHeight();
-	GLint objNum = wallNum + spawnNum + 1; // +1 чтобы учесть оставшийся отрезок
+	GLint objNum = wallNum + spawnNum ;//+ 1; // +1 чтобы учесть оставшийся отрезок
 	for (int i = 0; i < objNum; i++){
 		if ((i % spawnNum) == 0){
 			CGlobalObject *spawn = new CGlobalObject(GAME_MODEL_SPAWN,shader_program,0.0f, i * ModelWall::getHeight());

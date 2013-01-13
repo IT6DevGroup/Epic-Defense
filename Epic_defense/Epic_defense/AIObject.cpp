@@ -64,28 +64,33 @@ void CAIObject::initPath(){
 
 }
 
-POINT CAIObject::nextStep(POINT p){
+// Общая функция для абсолютно всех действий, которые может выполнять объект. Вызывается у каждого объекта перед прорисовкой
+POINT CAIObject::action(POINT p, CGraphicObject *grObj){
 	POINT pOut = p;
-	
-	switch(mesh.model){
 
-	case GAME_MODEL_GOBLIN:
-		{
-			ModelGoblin *goblin;
-			goblin = new ModelGoblin();
+	if (mesh.moving) {
+		switch(mesh.model){
 
-			pOut.x = p.x + 1;
-			pOut.y = p.y + 1;//10*sin(p.x);//p.y + 1;
+		case GAME_MODEL_GOBLIN:
+			{
+				ModelGoblin *goblin;
+				goblin = new ModelGoblin();
 
-			delete goblin;
+				pOut.x = p.x + 1;
+				pOut.y = p.y + 1;//10*sin(p.x);//p.y + 1;
+
+				grObj->Move(pOut.x, pOut.y);
+
+				delete goblin;
+			}
+			break;
+		case GAME_MODEL_TREE:
+		case GAME_MODEL_SPAWN:
+		case GAME_MODEL_WALL:
+		case GAME_MODEL_GROUND:
+		default:
+			break;
 		}
-		break;
-	case GAME_MODEL_TREE:
-	case GAME_MODEL_SPAWN:
-	case GAME_MODEL_WALL:
-	case GAME_MODEL_GROUND:
-	default:
-		break;
 	}
 
 	return pOut;

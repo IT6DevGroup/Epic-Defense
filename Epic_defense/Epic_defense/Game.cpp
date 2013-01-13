@@ -53,6 +53,13 @@ void CGame::LoadTextures(){
 	TEXTUREMANAGER::GetInstance().LoadTGATexture ("spawn.tga");
 	TEXTUREMANAGER::GetInstance().LoadTGATexture ("wall.tga");
 	TEXTUREMANAGER::GetInstance().LoadTGATexture ("goblin.tga");
+	TEXTUREMANAGER::GetInstance().LoadTGATexture ("path.tga");
+	/*
+	TEXTUREMANAGER::GetInstance().LoadTGATexture ("path_turn_lt.tga");
+	TEXTUREMANAGER::GetInstance().LoadTGATexture ("path_turn_bl.tga");
+	TEXTUREMANAGER::GetInstance().LoadTGATexture ("path_lr.tga");
+	TEXTUREMANAGER::GetInstance().LoadTGATexture ("path_bt.tga");
+	*/
 
 	GLuint textureSamplerLocation = glGetUniformLocation (shader_program, "diffuseTexture");
 	glUniform1i (textureSamplerLocation, 0);

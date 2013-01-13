@@ -9,6 +9,7 @@
 
 class CGraphicObject
 {
+	// MESH - особая структура для хранения всех необходимых данных, полученных из модели
 	struct MESH {
 		GLint model;
 		GLuint VAO;
@@ -25,8 +26,9 @@ public:
 	CGraphicObject(GLint model, GLuint shaderProgram, float posX, float poxY, float zOffset = 0.0f);
 	~CGraphicObject(void);
 
-	void Move(float x, float y, float z = 0.0f/*,  GLuint shaderProgram*/);
-	void DrawParamsSet(GLuint shaderProgram); // Установка параметров к прорисовке
+	void Move(float x, float y, float z = 0.0f);
+	// Установка параметров к прорисовке (выполняется перед самой функцией прорисовки OpenGL)
+	void DrawParamsSet(GLuint shaderProgram); 
 
 	GLuint getVAO();
 	std::vector <GLuint> getVBOVector();

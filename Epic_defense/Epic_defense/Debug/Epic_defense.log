@@ -1,12 +1,52 @@
-﻿Построение начато 12.01.2013 13:06:31.
+﻿Построение начато 13.01.2013 20:34:02.
      1>Проект "G:\Sync\Программирование\Epic-Defense\Epic_defense\Epic_defense\Epic_defense.vcxproj" в узле 2 (целевые объекты Build).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"E:\Sync\Программирование\Epic-Defense\Epic_defense\include" /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AIObject.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"E:\Sync\Программирование\Epic-Defense\Epic_defense\include" /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AIObject.cpp EpicDefense.cpp Game.cpp GameObject.cpp GlobalObject.cpp GraphicObject.cpp PhysicObject.cpp Scene.cpp SoundObject.cpp main.cpp
          AIObject.cpp
      1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelspawn.h(11): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
      1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelwall.h(10): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
      1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\aiobject.cpp(8): warning C4244: =: преобразование "GLfloat" в "LONG", возможна потеря данных
      1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\aiobject.cpp(9): warning C4244: =: преобразование "GLfloat" в "LONG", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\aiobject.cpp(82): warning C4244: аргумент: преобразование "LONG" в "float", возможна потеря данных
+         Создание кода...
+         Компиляция...
+         main.cpp
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelspawn.h(11): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelwall.h(10): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\main.cpp(137): warning C4018: <: несоответствие типов со знаком и без знака
+         SoundObject.cpp
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelspawn.h(11): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelwall.h(10): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+         Scene.cpp
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelspawn.h(11): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelwall.h(10): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+         PhysicObject.cpp
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelspawn.h(11): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelwall.h(10): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+         GraphicObject.cpp
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelspawn.h(11): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelwall.h(10): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\graphicobject.cpp(31): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\graphicobject.cpp(32): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\graphicobject.cpp(254): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\graphicobject.cpp(255): warning C4244: =: преобразование "float" в "LONG", возможна потеря данных
+         GlobalObject.cpp
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelspawn.h(11): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelwall.h(10): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+         GameObject.cpp
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelspawn.h(11): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelwall.h(10): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+         Game.cpp
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelspawn.h(11): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelwall.h(10): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+         EpicDefense.cpp
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelspawn.h(11): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\modelwall.h(10): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\epicdefense.cpp(19): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\epicdefense.cpp(113): warning C4244: инициализация: преобразование "float" в "GLint", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\epicdefense.cpp(114): warning C4244: инициализация: преобразование "GLfloat" в "GLint", возможна потеря данных
+     1>g:\sync\программирование\epic-defense\epic_defense\epic_defense\epicdefense.cpp(115): warning C4244: =: преобразование "GLfloat" в "GLint", возможна потеря данных
+         Создание кода...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\Sync\Программирование\Epic-Defense\Epic_defense\Debug\Epic_defense.exe" /INCREMENTAL /NOLOGO opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"G:\Sync\Программирование\Epic-Defense\Epic_defense\Debug\Epic_defense.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\Sync\Программирование\Epic-Defense\Epic_defense\Debug\Epic_defense.lib" /MACHINE:X86 Debug\AIObject.obj
          Debug\EpicDefense.obj
@@ -31,4 +71,4 @@
 
 Построение успешно завершено.
 
-Затраченное время: 00:00:10.95
+Затраченное время: 00:00:29.95

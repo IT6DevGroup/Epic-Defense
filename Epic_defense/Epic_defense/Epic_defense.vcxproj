@@ -97,6 +97,7 @@
     <ClInclude Include="log.h" />
     <ClInclude Include="matrix.h" />
     <ClInclude Include="ModelGoblin.h" />
+    <ClInclude Include="ModelPath.h" />
     <ClInclude Include="Models.h" />
     <ClInclude Include="ModelSpawn.h" />
     <ClInclude Include="ModelTemplate.h" />
