@@ -1,22 +1,22 @@
 #include "GraphicObject.h"
 
 /*
-	КАК ДОБАВИТЬ МОДЕЛЬ
+КАК ДОБАВИТЬ МОДЕЛЬ
 
-	В файле ModelTemplate создаём макрос с условным именем модели. То есть, например, GAME_MODEL_GROUND
-	Далее нужно создать класс модели (с приставкой Model), унаследованный от ModelTemplate.
-	Проставив в нём нужные данные, необходимо добавить сюда в конструкторе CGraphicObject в switch(model) новый case с добавленным макросом
-	и выполнить в нём все нужны функции. Сейчас можно просто скопировать любой другой case и поменять названия классов и переменных.
+В файле ModelTemplate создаём макрос с условным именем модели. То есть, например, GAME_MODEL_GROUND
+Далее нужно создать класс модели (с приставкой Model), унаследованный от ModelTemplate.
+Проставив в нём нужные данные, необходимо добавить сюда в конструкторе CGraphicObject в switch(model) новый case с добавленным макросом
+и выполнить в нём все нужны функции. Сейчас можно просто скопировать любой другой case и поменять названия классов и переменных.
 
-	Далее в функции DrawParamsSet() добавляем такой же case, как в конструктор, содержимое которого тоже будет таким же,
-	как у других кейзов этой функции, только с другими названиями
+Далее в функции DrawParamsSet() добавляем такой же case, как в конструктор, содержимое которого тоже будет таким же,
+как у других кейзов этой функции, только с другими названиями
 
-	Текстуру обязательно надо добавить в фунцкции CGame::LoadTextures()
+Текстуру обязательно надо добавить в фунцкции CGame::LoadTextures()
 
-	Всё, можно писать addObjectToScene нового объекта в main.cpp
+Всё, можно писать addObjectToScene нового объекта в main.cpp
 
-	Этот процесс распространяется и на другие файлы объектов. Пока задействованы только GraphicObject и AIObject, и в них обоих
-	следует прописывать эти кейзы (см. AIObject.cpp)
+Этот процесс распространяется и на другие файлы объектов. Пока задействованы только GraphicObject и AIObject, и в них обоих
+следует прописывать эти кейзы (см. AIObject.cpp)
 */
 
 // В конструкторе этого объекта в зависимости от модели записываются данные VAO и VBO. То есть, добавляется объект (картинка)
@@ -39,6 +39,9 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 			ground->initGraphic(posX,posY);
 
 			mesh.vcount = ground->getVerticesCount();
+
+			mesh.height = ModelGround::height;
+			mesh.width = ModelGround::width;
 
 			glGenVertexArrays(1, &mesh.VAO);
 			glBindVertexArray(mesh.VAO);
@@ -72,6 +75,9 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 			mesh.vcount = tree->getVerticesCount();
 			mesh.model = model;
 
+			mesh.height = ModelTree::height;
+			mesh.width = ModelTree::width;
+
 			glGenVertexArrays(1, &mesh.VAO);
 			glBindVertexArray(mesh.VAO);
 
@@ -103,6 +109,9 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 
 			mesh.vcount = spawn->getVerticesCount();
 			mesh.model = model;
+
+			mesh.height = ModelSpawn::height;
+			mesh.width = ModelSpawn::width;
 
 			glGenVertexArrays(1, &mesh.VAO);
 			glBindVertexArray(mesh.VAO);
@@ -136,6 +145,9 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 			mesh.vcount = wall->getVerticesCount();
 			mesh.model = model;
 
+			mesh.height = ModelWall::height;
+			mesh.width = ModelWall::width;
+
 			glGenVertexArrays(1, &mesh.VAO);
 			glBindVertexArray(mesh.VAO);
 
@@ -168,6 +180,9 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 			mesh.vcount = goblin->getVerticesCount();
 			mesh.model = model;
 
+			mesh.height = ModelGoblin::height;
+			mesh.width = ModelGoblin::width;
+
 			glGenVertexArrays(1, &mesh.VAO);
 			glBindVertexArray(mesh.VAO);
 
@@ -199,6 +214,9 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 
 			mesh.vcount = path->getVerticesCount();
 			mesh.model = model;
+
+			mesh.height = ModelPath::height;
+			mesh.width = ModelPath::width;
 
 			glGenVertexArrays(1, &mesh.VAO);
 			glBindVertexArray(mesh.VAO);
@@ -254,7 +272,7 @@ void CGraphicObject::Move(float x, float y, float z){
 		mesh.p.x = x;
 		mesh.p.y = y;
 	}
-	
+
 	glBindVertexArray(0);
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
@@ -390,4 +408,12 @@ POINT CGraphicObject::getCoords(){
 	pOut.y = mesh.p.y;
 
 	return pOut;
+}
+
+GLint CGraphicObject::getHeight(){
+	return mesh.height;
+}
+
+GLint CGraphicObject::getWidth(){
+	return mesh.width;
 }

@@ -19,11 +19,11 @@ void addTrees(GLuint shaderProgram){
 	srand ( time(NULL) );
 	// rand() % 10 + 1;
 	GLint treesCount = rand() % (GAME_MAX_TREES - GAME_MIN_TREES) + GAME_MIN_TREES; // Генерируем количество деревьев
-	GLint heapCount =  9;//treesCount/14;//rand() % ((GLint)treesCount/2) + 1; // Генерируем количество кучек деревьев
+	GLint heapCount =  9;//treesCount/14;//rand() % ((GLint)treesCount/2) + 1; // Количество кучек деревьев
 	heap *heaps = new heap [heapCount]; // Создаём массив кучек
 	GLint treesCountDec = treesCount; // Это число будет уменьшаться с добавлением деревьев в кучу
 	GLint tr = 0;
-	GLfloat spawnOffset = 200.0f;
+	GLfloat spawnOffset = GAME_PATHS_OFFSET;
 	for (GLint i = 0; i < 3; i++){ // Располагаем кучки
 		for (int j = 0; j < 3; j++){
 			heaps[tr].sizeX = (GAME_DEFAULT_GROUND_SIZE - spawnOffset)/3;
@@ -35,7 +35,7 @@ void addTrees(GLuint shaderProgram){
 	}
 	std::vector <GLint> heapIndexes;
 	for (GLint i = 0; i < heapCount; i++){
-		if (i != 5) // В шестом (но пятом от нуля) секторе у нас точка, куда идут мобы
+		if (i != 5 && i != 3) // В шестом (но пятом от нуля) секторе у нас точка, куда идут мобы, а четвёртов (но третьем от нуля) у нас выход с перекрёстка
 			heapIndexes.push_back(i);
 	}
 	while (heapIndexes.size()>0){
@@ -109,6 +109,11 @@ void addTrees(GLuint shaderProgram){
 }
 
 void addWallSpawnsPath(GLuint shaderProgram){
+	struct pathFrag{
+		GLint x, y;
+		GLint nextID;
+	};
+
 	GLint spawnNum = 3; 
 	GLint wallNum = GAME_DEFAULT_GROUND_SIZE / ModelWall::getHeight();
 	GLint wallHeight = wallNum * ModelWall::getHeight() - spawnNum * ModelSpawn::getHeight();
@@ -117,13 +122,80 @@ void addWallSpawnsPath(GLuint shaderProgram){
 	GLint oneWallPlot = objNum / spawnNum; // Длина одного участка стены
 
 	if(spawnNum == 3){ // Дорожки могут быть только если у нас три спауна
+
+		GLint pathNum = 1; // Номер по порядку той дороги, что сейчас добавляем. У второй дороги нет поворота, её конец - семафор
+		GLint pathFragCount = GAME_PATHS_OFFSET / ModelPath::width; // Количество помещающихся дорог
+		GLfloat correctingY = 25.0f; // Дороги нужно немного приподнять вверх, чтобы они были прямо напротив выхода спауна
+
+		std::vector <pathFrag> path1;
+		std::vector <pathFrag> path2;
+		std::vector <pathFrag> path3;
+
+		GLfloat firstSpawnY = 3 * ModelWall::getHeight();
+		GLfloat secondSpawnY = 7 * ModelWall::getHeight();
+		GLfloat thirdSpawnY = 11 * ModelWall::getHeight();
 		for (int i = 0; i < objNum; i++){
 			if (((i+1) % oneWallPlot) == 0){ // спаун
 				CGlobalObject *spawn = new CGlobalObject(GAME_MODEL_SPAWN,shader_program,0.0f, i * ModelWall::getHeight());
 				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, spawn);
+				if (pathNum != 2){ // Крайние дороги
+					if (pathNum == 1){ // Первая дорога
+						GLint fragFromBotCount =  (secondSpawnY - (firstSpawnY + ModelSpawn::height)) / ModelPath::height; // Количество дорог между спаунами, то есть кол-во дорог после поворота
+						for (int p = 0; p < pathFragCount; p++){
+							pathFrag frag;
+							frag.x = ModelWall::getWidth() + p * ModelPath::width;
+							frag.y = correctingY + i * ModelWall::getHeight(); // Координата Y текущего (в цикле) спауна
+							path1.push_back(frag);
+						}
+						// Теперь дорога после поворота
+						for (int p = 0; p < fragFromBotCount + 1; p++){ // +1  т.к. последняя дорога нефункционирующая, для красоты, чтобы не было зазора
+							pathFrag frag;
+							frag.x = ModelWall::getWidth() +  (pathFragCount - 1) * ModelPath::width; // Теперь у всех дорог одинаковый Х
+							frag.y = correctingY + i * ModelWall::getHeight() + ModelPath::height + p * ModelPath::height; // Координата Y текущего (в цикле) спауна + высота уже имеющейся дороги + меняющийся Y
+							path1.push_back(frag);
+						}
+					}
+					else { // Вторая дорога
+						GLint fragFromTopCount =  (thirdSpawnY - (secondSpawnY + ModelSpawn::height)) / ModelPath::height; // Количество дорог между спаунами, то есть кол-во дорог после поворота
+						for (int p = 0; p < pathFragCount; p++){
+							pathFrag frag;
+							frag.x = ModelWall::getWidth() + p * ModelPath::width;
+							frag.y = correctingY + i * ModelWall::getHeight(); // Координата Y (в цикле) спауна
+							path2.push_back(frag);
+						}
+						// Теперь дорога после поворота
+						for (int p = 0; p < fragFromTopCount + 1; p++){ // +1  т.к. последняя дорога нефункционирующая, для красоты, чтобы не было зазора
+							pathFrag frag;
+							frag.x = ModelWall::getWidth() +  (pathFragCount - 1) * ModelPath::width; // Теперь у всех дорог одинаковый Х
+							frag.y = correctingY + i * ModelWall::getHeight() - ModelPath::height - p * ModelPath::height; // Координата Y текущего (в цикле) спауна МИНУС меняющийся Y
+							path2.push_back(frag);
+						}
+					}
+				} else { // Средняя дорога
+					for (int p = 0; p < pathFragCount + 1; p++){ // +1  т.к. последняя дорога нефункционирующая, для красоты, чтобы был перекрёсток
+						pathFrag frag;
+						frag.x = ModelWall::getWidth() + p * ModelPath::width;
+						frag.y = correctingY + i * ModelWall::getHeight(); // Координата Y (в цикле) спауна
+						path3.push_back(frag);
+					}
+				}
+				pathNum++;
 			} else {
 				CGlobalObject *wall = new CGlobalObject(GAME_MODEL_WALL,shader_program,0.0f, i * ModelSpawn::getHeight());
 				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, wall);
+			}
+			// Вектора дорог готовы
+			for (int i = 0; i < path1.size(); i++){
+				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path1[i].x, path1[i].y);
+				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, pathFrag);
+			}
+			for (int i = 0; i < path2.size(); i++){
+				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path2[i].x, path2[i].y);
+				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, pathFrag);
+			}
+			for (int i = 0; i < path3.size(); i++){
+				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path3[i].x, path3[i].y);
+				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, pathFrag);
 			}
 		}
 	} else {

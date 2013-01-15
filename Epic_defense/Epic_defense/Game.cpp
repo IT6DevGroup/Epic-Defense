@@ -1,5 +1,7 @@
 #include "Game.h"
 
+bool CGame::paths;
+
 CGame::CGame(void)
 {
 	paths = true;

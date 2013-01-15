@@ -10,12 +10,12 @@
 class CAIObject
 {
 	// MESH - особая структура для хранения всех необходимых данных, полученных из модели
-	struct AIMESH {
+	struct AI_MESH {
 		GLint model;
 		POINT p;
 		bool moving;
 	};
-	AIMESH mesh;
+	AI_MESH mesh;
 public:
 	CAIObject(GLint model, GLfloat x, GLfloat y);
 	~CAIObject(void);

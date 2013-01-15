@@ -68,6 +68,7 @@ public:
 	int getVerticesCount(){
 		return vcount;
 	}
+
 	// Метод getTextureName нужен для возможности получения различных текстур при каких-либо особых обстоятельствах
 	std::string getTextureName(/* Какие-либо условия */);
 };

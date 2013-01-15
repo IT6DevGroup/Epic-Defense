@@ -55,9 +55,6 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			 
 			CGlobalObject *goblin2 = new CGlobalObject(GAME_MODEL_GOBLIN, shader_program, 50.0f, 2.0f);
 			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, goblin2);
-
-			CGlobalObject *path = new CGlobalObject(GAME_MODEL_PATH, shader_program, 50.0f, 2.0f);
-			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, path);
 			
 			// translateMatrix задаёт положение камеры
 			translateMatrixLocation = glGetUniformLocation (shader_program, "TranslateMatrix");

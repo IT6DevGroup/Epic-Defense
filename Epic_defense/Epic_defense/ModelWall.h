@@ -9,6 +9,9 @@ public:
 	static GLfloat getHeight(){
 		return ModelWall::sizeY;
 	}
+	static GLfloat getWidth(){
+		return ModelWall::sizeX;
+	}
 	void initTextures(){
 		TexturesNames.push_back("wall.tga");
 	}
