@@ -5,6 +5,7 @@
 #include "OpenGL.h"
 #include "timer.h"
 #include "EpicDefense.h"
+#include "AIHandler.h"
 #include "Game.h"
 
 GLfloat					projectionMatrix[16];
@@ -269,11 +270,14 @@ BOOL WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 				// Цикл прорисовки объектов сцены GAME_SCENE_MAIN
 				for(int i = 0; i < CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN); i++){
-					CAIObject *AIObject = CGame::Instance().getAIObject(GAME_SCENE_MAIN, i);
+					//CAIObject *AIObject = CGame::Instance().getAIObject(GAME_SCENE_MAIN, i);
 					CGraphicObject *graphicObject = CGame::Instance().getGraphicObject(GAME_SCENE_MAIN, i);
 
-					POINT pNow = graphicObject->getCoords();
-					AIObject->action(pNow, graphicObject);
+					//if(AIObject
+					/*POINT pNow = graphicObject->getCoords();
+					AIObject->action(pNow, graphicObject);*/
+
+					AIAction(i);
 
 					glBindVertexArray(graphicObject->getVAO());
 					graphicObject->DrawParamsSet(shader_program);

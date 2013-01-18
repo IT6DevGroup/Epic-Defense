@@ -1,7 +1,7 @@
 #include "AIObject.h"
 
 
-CAIObject::CAIObject(GLint model, GLfloat x, GLfloat y)
+CAIObject::CAIObject(GLint model, GLfloat x, GLfloat y, GLint specialParam)
 {
 
 	mesh.model = model;
@@ -47,7 +47,28 @@ CAIObject::CAIObject(GLint model, GLfloat x, GLfloat y)
 
 			mesh.moving = ModelGoblin::moving;
 
+			if (specialParam == 0) specialParam = -1;
+
+			mobMesh.nextFragID = specialParam;
+			mobMesh.onPoint = false;
+
 			delete goblin;
+		}
+		break;
+	case GAME_MODEL_PATH:
+		{
+			ModelPath *path;
+			path = new ModelPath();
+			
+			// У дороги specialParam - айди следующего квадрата, и если дорога заканчивается, айди равен -1. 
+			// Если specialParam равен нулю, то считаем, что дорога заканчивается, т.к. 0 - это земля
+			if (specialParam == 0) specialParam = -1;
+
+			// При создании квадрата считаем, что количество указывающих на него квадратов равно нулю
+			pathFragMesh.inCount = 0;
+			pathFragMesh.nextFragID = specialParam;
+
+			delete path;
 		}
 		break;
 	case GAME_MODEL_GROUND:
@@ -98,4 +119,33 @@ POINT CAIObject::action(POINT p, CGraphicObject *grObj){
 
 bool CAIObject::getMoving(){
 	return mesh.moving;
+}
+
+bool CAIObject::getMobOnPoint(){
+	return mobMesh.onPoint;
+}
+
+GLint CAIObject::getNextFragID(){
+	return mobMesh.nextFragID;
+}
+
+void CAIObject::setToPoint(POINT p){
+	mobMesh.toPoint = p;
+}
+
+void CAIObject::increasePathFragInCount(){
+	pathFragMesh.inCount++;
+}
+
+void CAIObject::goToPoint(){
+	if (mobMesh.onPoint){ // Если пришёл в точку, то идём в следующую
+
+	} else { // Если ещё не пришёл в точку, то идём со скоростью моба
+		if (mobMesh.nextFragID!=-1){ // Если у моба вообще есть точка, к которой двигаться
+			//CGraphicObject *grObj = CGame::Instance().
+			//POINT to = 
+		} else { // Иначе ищем путь к конечной точке
+
+		}
+	}
 }

@@ -39,7 +39,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>G:\Sync\Программирование\Epic-Defense\Epic_defense\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Толя\Dropbox\Программирование\C++\Epic-Defense\Epic_defense\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -66,6 +66,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AIHandler.cpp" />
     <ClCompile Include="AIObject.cpp" />
     <ClCompile Include="EpicDefense.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -86,6 +87,7 @@
     <ClCompile Include="tools.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AIHandler.h" />
     <ClInclude Include="AIObject.h" />
     <ClInclude Include="defines.h" />
     <ClInclude Include="EpicDefense.h" />

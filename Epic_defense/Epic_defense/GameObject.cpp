@@ -46,8 +46,8 @@ switch(model){
 			if (specialParam == 0) specialParam = -1;
 
 			// При создании квадрата считаем, что количество указывающих на него квадратов равно нулю
-			pathFragMesh.inCount = 0;
-			pathFragMesh.nextFragID = specialParam;
+			//pathFragMesh.inCount = 0;
+			//pathFragMesh.nextFragID = specialParam;
 
 			delete path;
 		}
@@ -63,7 +63,7 @@ CGameObject::~CGameObject(void)
 {
 }
 
-
-void CGameObject::increasePathFragInCount(GLint globalID){
+/*
+void CGameObject::increasePathFragInCount(){
 	pathFragMesh.inCount++;
-}
+}*/

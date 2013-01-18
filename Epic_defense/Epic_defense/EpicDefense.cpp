@@ -154,6 +154,7 @@ void addWallSpawnsPath(GLuint shaderProgram){
 							frag.y = correctingY + i * ModelWall::getHeight() + ModelPath::height + p * ModelPath::height; // Координата Y текущего (в цикле) спауна + высота уже имеющейся дороги + меняющийся Y
 							path1.push_back(frag);
 						}
+						pathNum++;
 					}
 					else { // Вторая дорога
 						GLint fragFromTopCount =  (thirdSpawnY - (secondSpawnY + ModelSpawn::height)) / ModelPath::height; // Количество дорог между спаунами, то есть кол-во дорог после поворота
@@ -161,50 +162,89 @@ void addWallSpawnsPath(GLuint shaderProgram){
 							pathFrag frag;
 							frag.x = ModelWall::getWidth() + p * ModelPath::width;
 							frag.y = correctingY + i * ModelWall::getHeight(); // Координата Y (в цикле) спауна
-							path2.push_back(frag);
+							path3.push_back(frag);
 						}
 						// Теперь дорога после поворота
 						for (int p = 0; p < fragFromTopCount + 1; p++){ // +1  т.к. последняя дорога нефункционирующая, для красоты, чтобы не было зазора
 							pathFrag frag;
 							frag.x = ModelWall::getWidth() +  (pathFragCount - 1) * ModelPath::width; // Теперь у всех дорог одинаковый Х
 							frag.y = correctingY + i * ModelWall::getHeight() - ModelPath::height - p * ModelPath::height; // Координата Y текущего (в цикле) спауна МИНУС меняющийся Y
-							path2.push_back(frag);
+							path3.push_back(frag);
 						}
+						pathNum++;
 					}
 				} else { // Средняя дорога
 					for (int p = 0; p < pathFragCount + 1; p++){ // +1  т.к. последняя дорога нефункционирующая, для красоты, чтобы был перекрёсток
 						pathFrag frag;
 						frag.x = ModelWall::getWidth() + p * ModelPath::width;
 						frag.y = correctingY + i * ModelWall::getHeight(); // Координата Y (в цикле) спауна
-						path3.push_back(frag);
+						path2.push_back(frag);
 					}
+					pathNum++;
 				}
-				pathNum++;
+				
 			} else {
 				CGlobalObject *wall = new CGlobalObject(GAME_MODEL_WALL,shader_program,0.0f, i * ModelSpawn::getHeight());
 				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, wall);
 			}
-			// Вектора дорог готовы
-			for (int i = 0; i < path1.size(); i++){
-				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path1[i].x, path1[i].y);
+		}
+		// Вектора дорог готовы
+
+		// Общее количество кусков дорог
+		GLint totalPathsNum = path1.size() + path2.size() + path3.size();
+		// Айди семафора
+		GLint semaphoreID = CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN) - 1 + (path1.size() - 1) + (path2.size() - 1);
+		for (int i = 0; i < path1.size(); i++){
+			if (i < path1.size()-1){
+				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path1[i].x, path1[i].y, 0, CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN)); // Указывает на следующий квадрат
 				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, pathFrag);
-			}
-			for (int i = 0; i < path2.size(); i++){
-				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path2[i].x, path2[i].y);
-				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, pathFrag);
-			}
-			for (int i = 0; i < path3.size(); i++){
-				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path3[i].x, path3[i].y);
+			} else { // Последний кусок дорожки указывает на семафор
+				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path1[i].x, path1[i].y, 0, semaphoreID); // Указывает на семафор
 				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, pathFrag);
 			}
 		}
-	} else {
+		for (int i = 0; i < path2.size(); i++){
+			if (i < path1.size()-1){
+				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path2[i].x, path2[i].y, 0, CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN));
+				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, pathFrag);
+			} else { // Последний кусок дороги ни на что не указывает
+				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path2[i].x, path2[i].y, 0, -1);
+				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, pathFrag);
+			}
+		}
+		for (int i = 0; i < path3.size(); i++){
+			if (i < path3.size()-1){ // До последнего куска дорожки
+				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path3[i].x, path3[i].y, 0, CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN)); // Указывает на следующий квадрат
+				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, pathFrag);
+			} else { // Последний кусок дорожки указывает на семафор
+				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path3[i].x, path3[i].y, 0, semaphoreID); // Указывает на семафор
+				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, pathFrag);
+			}
+		}
+		// Теперь увеличим значение входящих дорог у квадратов
+		GLint c = CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN);
+		for (int i = 0; i < totalPathsNum; i++){
+			GLint globalID = CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN) - 1 - totalPathsNum + i + 1; // -3 т.к. totalPathsNum = size() + size() + size()
+			if (globalID != semaphoreID){ // Не семафор
+				CAIObject *AIObject = CGame::Instance().getAIObject(GAME_SCENE_MAIN, globalID);
+				AIObject->increasePathFragInCount();
+			} else { // Семафор
+				CAIObject *AIObject = CGame::Instance().getAIObject(GAME_SCENE_MAIN, globalID);
+				AIObject->increasePathFragInCount();
+				AIObject->increasePathFragInCount();
+				AIObject->increasePathFragInCount();
+			}
+		}
+		GLint c2 = CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN) - 1 - totalPathsNum + 1;
+		CGlobalObject *goblin = new CGlobalObject(GAME_MODEL_GOBLIN, shader_program, 0.0f, 0.0f, 0, CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN) - 1 - totalPathsNum + 1);
+		CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, goblin);
+	} else { // Если указано больше трёх спаунов, дорог не будет
 		CGame::Instance().DisablePaths();
 		for (int i = 0; i < objNum; i++){
-			if (((i+1) % oneWallPlot) == 0){ // спаун
+			if (((i+1) % oneWallPlot) == 0){ // Спаун
 				CGlobalObject *spawn = new CGlobalObject(GAME_MODEL_SPAWN,shader_program,0.0f, i * ModelWall::getHeight());
 				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, spawn);
-			} else {
+			} else { // Стена
 				CGlobalObject *wall = new CGlobalObject(GAME_MODEL_WALL,shader_program,0.0f, i * ModelSpawn::getHeight());
 				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, wall);
 			}
