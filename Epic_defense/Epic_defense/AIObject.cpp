@@ -59,7 +59,7 @@ CAIObject::CAIObject(GLint model, GLfloat x, GLfloat y, GLint specialParam)
 		{
 			ModelPath *path;
 			path = new ModelPath();
-			
+
 			// У дороги specialParam - айди следующего квадрата, и если дорога заканчивается, айди равен -1. 
 			// Если specialParam равен нулю, то считаем, что дорога заканчивается, т.к. 0 - это земля
 			if (specialParam == 0) specialParam = -1;
@@ -125,12 +125,28 @@ bool CAIObject::getMobOnPoint(){
 	return mobMesh.onPoint;
 }
 
-GLint CAIObject::getNextFragID(){
+GLint CAIObject::getNextMobFragID(){
 	return mobMesh.nextFragID;
+}
+
+GLint CAIObject::getNextPathFragID(){
+	return pathFragMesh.nextFragID;
 }
 
 void CAIObject::setToPoint(POINT p){
 	mobMesh.toPoint = p;
+}
+
+void CAIObject::setOnPointOn(){
+	mobMesh.onPoint = true;
+}
+
+void CAIObject::setOnPointOff(){
+	mobMesh.onPoint = false;
+}
+
+void CAIObject::setNextMobFragID(GLint globalID){
+	mobMesh.nextFragID = globalID;
 }
 
 void CAIObject::increasePathFragInCount(){

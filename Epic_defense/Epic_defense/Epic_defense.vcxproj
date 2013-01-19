@@ -75,6 +75,7 @@
     <ClCompile Include="GraphicObject.cpp" />
     <ClCompile Include="log.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mathematics.cpp" />
     <ClCompile Include="matrix.cpp" />
     <ClCompile Include="OpenGL.cpp" />
     <ClCompile Include="PhysicObject.cpp" />
@@ -97,6 +98,7 @@
     <ClInclude Include="GlobalObject.h" />
     <ClInclude Include="GraphicObject.h" />
     <ClInclude Include="log.h" />
+    <ClInclude Include="Mathematics.h" />
     <ClInclude Include="matrix.h" />
     <ClInclude Include="ModelGoblin.h" />
     <ClInclude Include="ModelPath.h" />
@@ -107,6 +109,7 @@
     <ClInclude Include="ModelWall.h" />
     <ClInclude Include="OpenGL.h" />
     <ClInclude Include="PhysicObject.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="shader_manager.h" />
     <ClInclude Include="SoundObject.h" />
@@ -119,6 +122,9 @@
   <ItemGroup>
     <None Include="fragment.fsh" />
     <None Include="vertex.vsh" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Epic_defense.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -193,10 +193,10 @@ void addWallSpawnsPath(GLuint shaderProgram){
 		// Общее количество кусков дорог
 		GLint totalPathsNum = path1.size() + path2.size() + path3.size();
 		// Айди семафора
-		GLint semaphoreID = CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN) - 1 + (path1.size() - 1) + (path2.size() - 1);
+		GLint semaphoreID = CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN) + (path1.size() - 1) + (path2.size() - 1);
 		for (int i = 0; i < path1.size(); i++){
 			if (i < path1.size()-1){
-				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path1[i].x, path1[i].y, 0, CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN)); // Указывает на следующий квадрат
+				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path1[i].x, path1[i].y, 0, CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN) + 1); // Указывает на следующий квадрат
 				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, pathFrag);
 			} else { // Последний кусок дорожки указывает на семафор
 				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path1[i].x, path1[i].y, 0, semaphoreID); // Указывает на семафор
@@ -204,8 +204,8 @@ void addWallSpawnsPath(GLuint shaderProgram){
 			}
 		}
 		for (int i = 0; i < path2.size(); i++){
-			if (i < path1.size()-1){
-				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path2[i].x, path2[i].y, 0, CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN));
+			if (i < path2.size()-1){
+				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path2[i].x, path2[i].y, 0, CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN) + 1);
 				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, pathFrag);
 			} else { // Последний кусок дороги ни на что не указывает
 				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path2[i].x, path2[i].y, 0, -1);
@@ -214,7 +214,7 @@ void addWallSpawnsPath(GLuint shaderProgram){
 		}
 		for (int i = 0; i < path3.size(); i++){
 			if (i < path3.size()-1){ // До последнего куска дорожки
-				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path3[i].x, path3[i].y, 0, CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN)); // Указывает на следующий квадрат
+				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path3[i].x, path3[i].y, 0, CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN) + 1); // Указывает на следующий квадрат
 				CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, pathFrag);
 			} else { // Последний кусок дорожки указывает на семафор
 				CGlobalObject *pathFrag = new CGlobalObject(GAME_MODEL_PATH,shader_program,path3[i].x, path3[i].y, 0, semaphoreID); // Указывает на семафор
