@@ -6,6 +6,8 @@ class ModelWall: public ModelTemplate {
 	static const GLint sizeX = 33;
 	static const GLint sizeY = 80;
 public:
+	static const GLint vcount = 6;
+
 	static GLfloat getHeight(){
 		return ModelWall::sizeY;
 	}
@@ -16,7 +18,6 @@ public:
 		TexturesNames.push_back("wall.tga");
 	}
 	void initGraphic(float posX, float posY){
-		vcount = 6;
 		initTextures();
 
 		vertex v1 = { sizeX + posX, 0.0f + posY, -GAME_DEFAULT_GROUND_DISTANCE, 1.0f,  0.0f };

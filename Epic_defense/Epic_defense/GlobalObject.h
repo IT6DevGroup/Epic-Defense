@@ -12,8 +12,10 @@ class CGlobalObject
 	CSoundObject *soundObj;
 	CAIObject *aiObj;
 
+	GLint globalID;
+
 public:
-	CGlobalObject(GLint model, GLuint shaderProgram, float posX, float posY, float zOffset = 0.0f, GLint specialParam = 0);
+	CGlobalObject(GLint model, GLuint shaderProgram, float posX, float posY, GLint globalObjID, float zOffset = 0.0f, GLint specialParam = 0);
 	~CGlobalObject(void);
 
 	CGraphicObject* getGraphicObject();
@@ -21,5 +23,7 @@ public:
 	CPhysicObject* getPhysicObject();
 	CSoundObject* getSoundObject();
 	CAIObject* getAIObject();
+
+	GLint getGlobalID();
 };
 

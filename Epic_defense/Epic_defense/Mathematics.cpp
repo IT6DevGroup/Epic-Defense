@@ -2,8 +2,9 @@
 
 POINT divisionStraightWithRatio(POINT A, POINT B, GLint distance){
 	// Считаем, что AB - гипотенуза, C - точка с прямым углом
-	GLint AC, BC;
+	GLfloat AC, BC;
 	POINT M; // Точка, которую предстоит найти
+	// Находим катеты
 	if (B.x > A.x){
 		AC = B.x - A.x;
 	} else {

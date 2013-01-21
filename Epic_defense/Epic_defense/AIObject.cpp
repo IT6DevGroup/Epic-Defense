@@ -133,6 +133,10 @@ GLint CAIObject::getNextPathFragID(){
 	return pathFragMesh.nextFragID;
 }
 
+GLint CAIObject::getModelName(){
+	return mesh.model;
+}
+
 void CAIObject::setToPoint(POINT p){
 	mobMesh.toPoint = p;
 }
@@ -147,6 +151,14 @@ void CAIObject::setOnPointOff(){
 
 void CAIObject::setNextMobFragID(GLint globalID){
 	mobMesh.nextFragID = globalID;
+}
+
+void CAIObject::stopMoving(){
+	mesh.moving = false;
+}
+
+void CAIObject::continueMoving(){
+	mesh.moving = true;
 }
 
 void CAIObject::increasePathFragInCount(){

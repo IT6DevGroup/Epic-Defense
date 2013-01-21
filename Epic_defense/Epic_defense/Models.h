@@ -14,3 +14,4 @@
 #include "ModelWall.h"
 #include "ModelGoblin.h"
 #include "ModelPath.h"
+#include "ModelCastle.h"

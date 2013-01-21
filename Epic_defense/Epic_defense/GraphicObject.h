@@ -20,12 +20,15 @@ class CGraphicObject
 		GLint width, height;
 	};
 	MESH mesh;
+	bool isInitialized;
 	GLfloat	projectionMatrix[16];
 	GLfloat	translateMatrix[16];
 	GLfloat	textureMatrix[16];
 public:
 	CGraphicObject(GLint model, GLuint shaderProgram, float posX, float poxY, float zOffset = 0.0f);
 	~CGraphicObject(void);
+
+	void initialize();
 
 	void Move(float x, float y, float z = 0.0f);
 	// Установка параметров к прорисовке (выполняется перед самой функцией прорисовки OpenGL)
@@ -37,5 +40,6 @@ public:
 	POINT getCoords();
 	GLint getHeight();
 	GLint getWidth();
+	bool getIsInitialized();
 };
 

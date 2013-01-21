@@ -6,11 +6,12 @@ class ModelTree: public ModelTemplate {
 	// Эту переменную следует заменить на новые width и height с соответствующими изменениями в addTrees()
 	static const GLint TreeSize = 70;
 public:
+	static const GLint vcount = 6;
+
 	void initTextures(){
 		TexturesNames.push_back("tree.tga");
 	}
 	void initGraphic(float posX, float posY, float zOffset = 0.0f){
-		vcount = 6;
 		initTextures();
 
 		GLfloat distance = GAME_DEFAULT_GROUND_DISTANCE;//- 1.0f;

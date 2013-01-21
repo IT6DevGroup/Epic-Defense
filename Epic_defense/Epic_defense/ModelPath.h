@@ -27,6 +27,8 @@ public:
 	static const GLint height = 50;
 	*/
 
+	static const GLint vcount = 6;
+
 	static const GLint width = 26;
 	static const GLint height = 26;
 
@@ -41,7 +43,6 @@ public:
 		TexturesNames.push_back("path.tga");
 	}
 	void initGraphic(float posX, float posY, float zOffset = 0.0f){
-		vcount = 6;
 		initTextures();
 
 		vertex v1 = {0.0f + posX, height + posY, -GAME_DEFAULT_GROUND_DISTANCE, 0.0f,  1.0f };

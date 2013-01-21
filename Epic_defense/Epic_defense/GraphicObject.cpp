@@ -4,10 +4,10 @@
 // В конструкторе этого объекта в зависимости от модели записываются данные VAO и VBO. То есть, добавляется объект (картинка)
 CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, float posY, float zOffset)
 {
-	GLuint inVertexLocation;
-	GLuint inTextureCoordinatesLocation;
 
-	int vboIndex = 0; // Индексы ВБО (для понятливости), инкрементится с добавление ВБО
+	isInitialized = false;
+
+	int vboIndex = 0; // Индексы ВБО (для понятливости), инкрементится с добавлением ВБО
 
 	mesh.model = model;
 	mesh.p.x = posX;
@@ -16,23 +16,110 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 	switch (model) {
 	case GAME_MODEL_GROUND:
 		{
-			ModelGround *ground;
-			ground = new ModelGround();
-			ground->initGraphic(posX,posY);
-
-			mesh.vcount = ground->getVerticesCount();
+			mesh.vcount = ModelGround::vcount;
 
 			mesh.height = ModelGround::height;
 			mesh.width = ModelGround::width;
 
-			glGenVertexArrays(1, &mesh.VAO);
-			glBindVertexArray(mesh.VAO);
+			GLuint vbo1;
+			mesh.VBOVector.push_back(vbo1);
+		}
+		break;
+	case GAME_MODEL_TREE:
+		{
+			mesh.vcount = ModelTree::vcount;
+			mesh.model = model;
+
+			mesh.height = ModelTree::height;
+			mesh.width = ModelTree::width;
 
 			GLuint vbo1;
 			mesh.VBOVector.push_back(vbo1);
+		}
+		break;
+	case GAME_MODEL_SPAWN:
+		{
+			mesh.vcount = ModelSpawn::vcount;
+			mesh.model = model;
 
-			glGenBuffers (1, &mesh.VBOVector[vboIndex]);
-			glBindBuffer (GL_ARRAY_BUFFER, mesh.VBOVector[vboIndex]);
+			mesh.height = ModelSpawn::height;
+			mesh.width = ModelSpawn::width;
+
+			GLuint vbo1;
+			mesh.VBOVector.push_back(vbo1);
+		}
+		break;
+	case GAME_MODEL_WALL:
+		{
+			mesh.vcount = ModelWall::vcount;
+			mesh.model = model;
+
+			mesh.height = ModelWall::height;
+			mesh.width = ModelWall::width;
+
+			GLuint vbo1;
+			mesh.VBOVector.push_back(vbo1);
+		}
+		break;
+	case GAME_MODEL_GOBLIN:
+		{
+			mesh.vcount = ModelGoblin::vcount;
+			mesh.model = model;
+
+			mesh.height = ModelGoblin::height;
+			mesh.width = ModelGoblin::width;
+
+			GLuint vbo1;
+			mesh.VBOVector.push_back(vbo1);
+		}
+		break;
+	case GAME_MODEL_PATH:
+		{
+			mesh.vcount = ModelPath::vcount;
+			mesh.model = model;
+
+			mesh.height = ModelPath::height;
+			mesh.width = ModelPath::width;
+
+			GLuint vbo1;
+			mesh.VBOVector.push_back(vbo1);
+		}
+		break;
+	case GAME_MODEL_CASTLE:
+		{
+			mesh.vcount = ModelCastle::vcount;
+			mesh.model = model;
+
+			mesh.height = ModelCastle::height;
+			mesh.width = ModelCastle::width;
+
+			GLuint vbo1;
+			mesh.VBOVector.push_back(vbo1);
+		}
+		break;
+	default: // Неизвестная модель
+		break;
+	}
+}
+
+void CGraphicObject::initialize(){
+	GLuint inVertexLocation;
+	GLuint inTextureCoordinatesLocation;
+
+	isInitialized = true;
+
+	switch (mesh.model) {
+	case GAME_MODEL_GROUND:
+		{
+			ModelGround *ground;
+			ground = new ModelGround();
+			ground->initGraphic(mesh.p.x,mesh.p.y);
+
+			glGenVertexArrays(1, &mesh.VAO);
+			glBindVertexArray(mesh.VAO);
+
+			glGenBuffers (1, &mesh.VBOVector[0]);
+			glBindBuffer (GL_ARRAY_BUFFER, mesh.VBOVector[0]);
 			glBufferData (GL_ARRAY_BUFFER,  ground->getVerticesList().size() * sizeof(vertex), (GLvoid *) ground->getVerticesList().data(), GL_STATIC_DRAW);
 
 			inVertexLocation = glGetAttribLocation (shader_program, "inVertex");
@@ -52,22 +139,13 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 		{
 			ModelTree *tree;
 			tree = new ModelTree();
-			tree->initGraphic(posX,posY, zOffset);
-
-			mesh.vcount = tree->getVerticesCount();
-			mesh.model = model;
-
-			mesh.height = ModelTree::height;
-			mesh.width = ModelTree::width;
+			tree->initGraphic(mesh.p.x,mesh.p.y);
 
 			glGenVertexArrays(1, &mesh.VAO);
 			glBindVertexArray(mesh.VAO);
 
-			GLuint vbo1;
-			mesh.VBOVector.push_back(vbo1);
-
-			glGenBuffers (1, &mesh.VBOVector[vboIndex]);
-			glBindBuffer (GL_ARRAY_BUFFER, mesh.VBOVector[vboIndex]);
+			glGenBuffers (1, &mesh.VBOVector[0]);
+			glBindBuffer (GL_ARRAY_BUFFER, mesh.VBOVector[0]);
 			glBufferData (GL_ARRAY_BUFFER,  tree->getVerticesList().size() * sizeof(vertex), (GLvoid *) tree->getVerticesList().data(), GL_STATIC_DRAW);
 
 			inVertexLocation = glGetAttribLocation (shader_program, "inVertex");
@@ -87,22 +165,13 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 		{
 			ModelSpawn *spawn;
 			spawn = new ModelSpawn();
-			spawn->initGraphic(posX,posY);
-
-			mesh.vcount = spawn->getVerticesCount();
-			mesh.model = model;
-
-			mesh.height = ModelSpawn::height;
-			mesh.width = ModelSpawn::width;
+			spawn->initGraphic(mesh.p.x,mesh.p.y);
 
 			glGenVertexArrays(1, &mesh.VAO);
 			glBindVertexArray(mesh.VAO);
 
-			GLuint vbo1;
-			mesh.VBOVector.push_back(vbo1);
-
-			glGenBuffers (1, &mesh.VBOVector[vboIndex]);
-			glBindBuffer (GL_ARRAY_BUFFER, mesh.VBOVector[vboIndex]);
+			glGenBuffers (1, &mesh.VBOVector[0]);
+			glBindBuffer (GL_ARRAY_BUFFER, mesh.VBOVector[0]);
 			glBufferData (GL_ARRAY_BUFFER,  spawn->getVerticesList().size() * sizeof(vertex), (GLvoid *) spawn->getVerticesList().data(), GL_STATIC_DRAW);
 
 			inVertexLocation = glGetAttribLocation (shader_program, "inVertex");
@@ -122,22 +191,13 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 		{
 			ModelWall *wall;
 			wall = new ModelWall();
-			wall->initGraphic(posX,posY);
-
-			mesh.vcount = wall->getVerticesCount();
-			mesh.model = model;
-
-			mesh.height = ModelWall::height;
-			mesh.width = ModelWall::width;
+			wall->initGraphic(mesh.p.x,mesh.p.y);
 
 			glGenVertexArrays(1, &mesh.VAO);
 			glBindVertexArray(mesh.VAO);
 
-			GLuint vbo1;
-			mesh.VBOVector.push_back(vbo1);
-
-			glGenBuffers (1, &mesh.VBOVector[vboIndex]);
-			glBindBuffer (GL_ARRAY_BUFFER, mesh.VBOVector[vboIndex]);
+			glGenBuffers (1, &mesh.VBOVector[0]);
+			glBindBuffer (GL_ARRAY_BUFFER, mesh.VBOVector[0]);
 			glBufferData (GL_ARRAY_BUFFER,  wall->getVerticesList().size() * sizeof(vertex), (GLvoid *) wall->getVerticesList().data(), GL_STATIC_DRAW);
 
 			inVertexLocation = glGetAttribLocation (shader_program, "inVertex");
@@ -157,22 +217,13 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 		{
 			ModelGoblin *goblin;
 			goblin = new ModelGoblin();
-			goblin->initGraphic(posX,posY);
-
-			mesh.vcount = goblin->getVerticesCount();
-			mesh.model = model;
-
-			mesh.height = ModelGoblin::height;
-			mesh.width = ModelGoblin::width;
+			goblin->initGraphic(mesh.p.x,mesh.p.y);
 
 			glGenVertexArrays(1, &mesh.VAO);
 			glBindVertexArray(mesh.VAO);
 
-			GLuint vbo1;
-			mesh.VBOVector.push_back(vbo1);
-
-			glGenBuffers (1, &mesh.VBOVector[vboIndex]);
-			glBindBuffer (GL_ARRAY_BUFFER, mesh.VBOVector[vboIndex]);
+			glGenBuffers (1, &mesh.VBOVector[0]);
+			glBindBuffer (GL_ARRAY_BUFFER, mesh.VBOVector[0]);
 			glBufferData (GL_ARRAY_BUFFER,  goblin->getVerticesList().size() * sizeof(vertex), (GLvoid *) goblin->getVerticesList().data(), GL_STATIC_DRAW);
 
 			inVertexLocation = glGetAttribLocation (shader_program, "inVertex");
@@ -192,22 +243,13 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 		{
 			ModelPath *path;
 			path = new ModelPath();
-			path->initGraphic(posX,posY);
-
-			mesh.vcount = path->getVerticesCount();
-			mesh.model = model;
-
-			mesh.height = ModelPath::height;
-			mesh.width = ModelPath::width;
+			path->initGraphic(mesh.p.x,mesh.p.y);
 
 			glGenVertexArrays(1, &mesh.VAO);
 			glBindVertexArray(mesh.VAO);
 
-			GLuint vbo1;
-			mesh.VBOVector.push_back(vbo1);
-
-			glGenBuffers (1, &mesh.VBOVector[vboIndex]);
-			glBindBuffer (GL_ARRAY_BUFFER, mesh.VBOVector[vboIndex]);
+			glGenBuffers (1, &mesh.VBOVector[0]);
+			glBindBuffer (GL_ARRAY_BUFFER, mesh.VBOVector[0]);
 			glBufferData (GL_ARRAY_BUFFER,  path->getVerticesList().size() * sizeof(vertex), (GLvoid *) path->getVerticesList().data(), GL_STATIC_DRAW);
 
 			inVertexLocation = glGetAttribLocation (shader_program, "inVertex");
@@ -221,6 +263,32 @@ CGraphicObject::CGraphicObject(GLint model, GLuint shaderProgram, float posX, fl
 			glBindVertexArray(0);
 
 			delete path;
+		}
+		break;
+	case GAME_MODEL_CASTLE:
+		{
+			ModelCastle *castle;
+			castle = new ModelCastle();
+			castle->initGraphic(mesh.p.x,mesh.p.y);
+
+			glGenVertexArrays(1, &mesh.VAO);
+			glBindVertexArray(mesh.VAO);
+
+			glGenBuffers (1, &mesh.VBOVector[0]);
+			glBindBuffer (GL_ARRAY_BUFFER, mesh.VBOVector[0]);
+			glBufferData (GL_ARRAY_BUFFER,  castle->getVerticesList().size() * sizeof(vertex), (GLvoid *) castle->getVerticesList().data(), GL_STATIC_DRAW);
+
+			inVertexLocation = glGetAttribLocation (shader_program, "inVertex");
+			glEnableVertexAttribArray (inVertexLocation);
+
+			inTextureCoordinatesLocation = glGetAttribLocation (shader_program, "inTextureCoordinates");
+			glEnableVertexAttribArray (inTextureCoordinatesLocation);
+
+			glVertexAttribPointer (inVertexLocation, 3, GL_FLOAT, GL_FALSE, sizeof(vertex), 0);
+			glVertexAttribPointer (inTextureCoordinatesLocation, 2, GL_FLOAT, GL_FALSE, sizeof(vertex), (GLvoid *)(sizeof(GLfloat) * 3));
+			glBindVertexArray(0);
+
+			delete castle;
 		}
 		break;
 	default: // Неизвестная модель
@@ -360,6 +428,22 @@ void CGraphicObject::DrawParamsSet(GLuint shaderProgram){
 			delete path;
 		}
 		break;
+	case GAME_MODEL_CASTLE:
+		{
+			ModelCastle *castle;
+			castle = new ModelCastle();
+			castle->initTextures();
+			std::string textureName = castle->getTextureName();
+			TEXTUREMANAGER::GetInstance().SetTexture(textureName);
+
+			GetIdentityMatrix(textureMatrix);
+
+			textureMatrix[3]	= 0.0f;
+			glUniformMatrix4fv (textureMatrixLocation, 1, GL_FALSE, textureMatrix);	
+
+			delete castle;
+		}
+		break;
 	default:
 		break;
 	}
@@ -398,4 +482,8 @@ GLint CGraphicObject::getHeight(){
 
 GLint CGraphicObject::getWidth(){
 	return mesh.width;
+}
+
+bool CGraphicObject::getIsInitialized(){
+	return isInitialized;
 }

@@ -7,6 +7,8 @@ class ModelSpawn: public ModelTemplate {
 	static const GLint sizeX = 33;
 	static const GLint sizeY = 80;
 public:
+	static const GLint vcount = 6;
+
 	static GLfloat getHeight(){
 		return ModelSpawn::sizeY;
 	}
@@ -14,7 +16,6 @@ public:
 		TexturesNames.push_back("spawn.tga");
 	}
 	void initGraphic(float posX, float posY){
-		vcount = 6;
 		initTextures();
 
 		/*vertex v1 = {0.0f + posX, -sizeY + posY, -5.0f, 1.0f, 0.0f};

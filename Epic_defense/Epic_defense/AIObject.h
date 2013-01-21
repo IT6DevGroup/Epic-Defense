@@ -46,11 +46,14 @@ public:
 	bool getMobOnPoint();
 	GLint getNextMobFragID();
 	GLint getNextPathFragID();
+	GLint getModelName();
 
 	void setToPoint(POINT p);
 	void setOnPointOn();
 	void setOnPointOff();
 	void setNextMobFragID(GLint globalID);
+	void stopMoving();
+	void continueMoving();
 	// Увеличивает количество входящих дорог у квадрата на единицу
 	void increasePathFragInCount();
 

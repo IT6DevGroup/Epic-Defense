@@ -1,0 +1,11 @@
+﻿Построение начато 21.01.2013 5:59:39.
+     1>Проект "C:\Users\Толя\Dropbox\Программирование\C++\Epic-Defense\Epic_defense\Epic_defense\Epic_defense.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Threads.cpp
+         Threads.cpp
+     1>c:\users\толя\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\texture_manager.h(4): fatal error C1083: Не удается открыть файл включение: GL/glew.h: No such file or directory
+     1>Построение проекта "C:\Users\Толя\Dropbox\Программирование\C++\Epic-Defense\Epic_defense\Epic_defense\Epic_defense.vcxproj" завершено (целевые объекты Build) с ошибкой.
+
+Сбой построения.
+
+Затраченное время: 00:00:02.25

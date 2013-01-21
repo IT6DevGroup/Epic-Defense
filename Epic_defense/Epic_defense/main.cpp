@@ -29,6 +29,7 @@ GameTimer				timer;
 unsigned				animationFrame = 0;
 double					time = 0.0;
 
+
 LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
@@ -40,29 +41,31 @@ LRESULT CALLBACK WndProc (HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		initShaderProgram();
 
 		{
+			initializeCritSectionsAndSemaphores();
 
 			CGame::Instance().LoadTextures();
 
 			CScene *mainScene = new CScene();
-			CGlobalObject *ground = new CGlobalObject(GAME_MODEL_GROUND, shader_program, 0.0f, 0.0f);
+			CGlobalObject *ground = new CGlobalObject(GAME_MODEL_GROUND, shader_program, 0.0f, 0.0f, CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN));
 
 			CGame::Instance().addScene(mainScene, GAME_SCENE_MAIN);
 			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, ground);
+			addWallSpawnsPath(shader_program);		
+			CGame::Instance().setSortFrom(CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN) - 1);
 			addTrees(shader_program);
-			addWallSpawnsPath(shader_program);			
 
-			CGlobalObject *goblin = new CGlobalObject(GAME_MODEL_GOBLIN, shader_program, 0.0f, 0.0f);
-			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, goblin);
-			 
-			CGlobalObject *goblin2 = new CGlobalObject(GAME_MODEL_GOBLIN, shader_program, 50.0f, 2.0f);
-			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, goblin2);
+			CGlobalObject *castle = new CGlobalObject(GAME_MODEL_CASTLE, shader_program, GAME_DEFAULT_GROUND_SIZE - ModelCastle::width, GAME_DEFAULT_GROUND_SIZE/2, CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN));
+			CGame::Instance().addObjectToScene(GAME_SCENE_MAIN, castle);
+			
+			POINT castleCoords = { GAME_DEFAULT_GROUND_SIZE - ModelCastle::width, GAME_DEFAULT_GROUND_SIZE/2 };
+			CGame::Instance().setCastleCoords(castleCoords);
 			
 			// translateMatrix задаёт положение камеры
 			translateMatrixLocation = glGetUniformLocation (shader_program, "TranslateMatrix");
 			GetIdentityMatrix(translateMatrix);
 
-			translateMatrix[3] /*= 0.0f;*/ -= WINDOW_WIDTH/2;
-			translateMatrix[7] /*= 0.0f;*/ -= WINDOW_HEIGHT/2;
+			translateMatrix[3] -= WINDOW_WIDTH/2;
+			translateMatrix[7] -= WINDOW_HEIGHT/2;
 			translateMatrix[11] = - 450.0f;
 			glUniformMatrix4fv (translateMatrixLocation, 1, GL_FALSE, translateMatrix);
 
@@ -258,26 +261,27 @@ BOOL WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 			{
 				time -= 0.040;
 
+				if (animationFrame != 0 && animationFrame % GAME_WAVE_PER_FRAME == 0)
+					if (CGame::Instance().getWaveNum() == 10) // При десятой волне наступает новая глобальная волна
+						CGame::Instance().nextGlobalWave();
+					else CGame::Instance().nextWave();
+
 				glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 				glActiveTexture (GL_TEXTURE0);
 
-				/*
-				* TODO: Сортировка по убыванию координаты Y объектов сцены для правильного отображения. 
-				* Сортировка должна быть оптимальна для почти упорядоченной последовательности и должна находиться в классе CScene.
-				* Лучше сделать как вызов CGame::Instance().sortObjectsOnScene(std::string sceneName) с последующим вызовом метода сцены.
-				*/
+				//CGame::Instance().sortObjectsOnScene(GAME_SCENE_MAIN);
 
 				// Цикл прорисовки объектов сцены GAME_SCENE_MAIN
 				for(int i = 0; i < CGame::Instance().getObjectsCountOnScene(GAME_SCENE_MAIN); i++){
 					//CAIObject *AIObject = CGame::Instance().getAIObject(GAME_SCENE_MAIN, i);
-					CGraphicObject *graphicObject = CGame::Instance().getGraphicObject(GAME_SCENE_MAIN, i);
+					CGraphicObject *graphicObject = CGame::Instance().getGraphicObject(GAME_SCENE_MAIN, i, true);
+					if (!graphicObject->getIsInitialized())
+						graphicObject->initialize();
 
-					//if(AIObject
-					/*POINT pNow = graphicObject->getCoords();
-					AIObject->action(pNow, graphicObject);*/
+					CGlobalObject *globalObj = CGame::Instance().getGlobalObject(GAME_SCENE_MAIN, i);
 
-					AIAction(i);
+					AIAction(globalObj->getGlobalID());
 
 					glBindVertexArray(graphicObject->getVAO());
 					graphicObject->DrawParamsSet(shader_program);
@@ -288,7 +292,7 @@ BOOL WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 				glBindTexture (GL_TEXTURE_2D, 0);
 
-				glError = glGetError();
+				//glError = glGetError();
 
 				SwapBuffers (hdc);
 

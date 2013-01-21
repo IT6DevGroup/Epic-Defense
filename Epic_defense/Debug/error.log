@@ -1,0 +1,5 @@
+Vertex shader(s) failed to link, fragment shader(s) failed to link.
+Vertex link error: INVALID_OPERATION.
+ERROR: error(#280) Not all shaders have valid object code
+fragment link error: INVALID_OPERATION.
+ERROR: error(#280) Not all shaders have valid object code

@@ -91,6 +91,9 @@
       <Filter>Файлы исходного кода\game\basics</Filter>
     </ClCompile>
     <ClCompile Include="Mathematics.cpp">
+      <Filter>Файлы исходного кода\game\basics</Filter>
+    </ClCompile>
+    <ClCompile Include="Threads.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
   </ItemGroup>
@@ -183,7 +186,13 @@
       <Filter>Заголовочные файлы</Filter>
     </ClInclude>
     <ClInclude Include="Mathematics.h">
+      <Filter>Заголовочные файлы\game\basics</Filter>
+    </ClInclude>
+    <ClInclude Include="Threads.h">
       <Filter>Заголовочные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelCastle.h">
+      <Filter>Заголовочные файлы\game\models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

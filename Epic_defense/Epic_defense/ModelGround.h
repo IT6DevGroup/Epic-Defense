@@ -4,11 +4,11 @@
 
 class ModelGround: public ModelTemplate {
 public:
+	static const GLint vcount = 150;
 	void initTextures(){
 		ModelGround::TexturesNames.push_back("grass.tga");
 	}
 	void initGraphic(float posX, float posY){
-		vcount = 150;
 		initTextures();
 		
 		/*vertex v1 = {0.0f + posX, -100.0f + posY, -5.0f, 1.0f, 0.0f};

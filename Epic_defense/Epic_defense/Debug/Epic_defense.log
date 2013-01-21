@@ -1,39 +1,13 @@
-﻿Построение начато 19.01.2013 17:23:47.
+﻿Построение начато 21.01.2013 4:21:27.
      1>Проект "C:\Users\anato_000\Dropbox\Программирование\C++\Epic-Defense\Epic_defense\Epic_defense\Epic_defense.vcxproj" в узле 2 (целевые объекты Build).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"E:\Sync\Программирование\Epic-Defense\Epic_defense\include" /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt EpicDefense.cpp
-         EpicDefense.cpp
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\modelspawn.h(11): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\modelwall.h(10): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\modelwall.h(13): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(19): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(118): warning C4244: инициализация: преобразование "float" в "GLint", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(119): warning C4244: инициализация: преобразование "GLfloat" в "GLint", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(120): warning C4244: =: преобразование "GLfloat" в "GLint", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(143): warning C4244: инициализация: преобразование "GLfloat" в "GLint", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(146): warning C4244: =: преобразование "GLfloat" в "GLint", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(147): warning C4244: =: преобразование "GLfloat" в "GLint", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(153): warning C4244: =: преобразование "GLfloat" в "GLint", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(154): warning C4244: =: преобразование "GLfloat" в "GLint", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(160): warning C4244: инициализация: преобразование "GLfloat" в "GLint", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(163): warning C4244: =: преобразование "GLfloat" в "GLint", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(164): warning C4244: =: преобразование "GLfloat" в "GLint", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(170): warning C4244: =: преобразование "GLfloat" в "GLint", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(171): warning C4244: =: преобразование "GLfloat" в "GLint", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(179): warning C4244: =: преобразование "GLfloat" в "GLint", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(180): warning C4244: =: преобразование "GLfloat" в "GLint", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(197): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(198): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(199): warning C4244: аргумент: преобразование "GLint" в "float", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(202): warning C4244: аргумент: преобразование "GLint" в "float", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(206): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(207): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(208): warning C4244: аргумент: преобразование "GLint" в "float", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(211): warning C4244: аргумент: преобразование "GLint" в "float", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(215): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(216): warning C4018: <: несоответствие типов со знаком и без знака
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(217): warning C4244: аргумент: преобразование "GLint" в "float", возможна потеря данных
-     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\epicdefense.cpp(220): warning C4244: аргумент: преобразование "GLint" в "float", возможна потеря данных
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"E:\Sync\Программирование\Epic-Defense\Epic_defense\include" /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AIHandler.cpp
+         AIHandler.cpp
+     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\modelspawn.h(13): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\modelwall.h(12): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\modelwall.h(15): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\aihandler.cpp(25): warning C4244: аргумент: преобразование "LONG" в "float", возможна потеря данных
+     1>c:\users\anato_000\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\aihandler.cpp(34): warning C4244: аргумент: преобразование "LONG" в "float", возможна потеря данных
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\anato_000\Dropbox\Программирование\C++\Epic-Defense\Epic_defense\Debug\Epic_defense.exe" /INCREMENTAL /NOLOGO opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\anato_000\Dropbox\Программирование\C++\Epic-Defense\Epic_defense\Debug\Epic_defense.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\anato_000\Dropbox\Программирование\C++\Epic-Defense\Epic_defense\Debug\Epic_defense.lib" /MACHINE:X86 Debug\Epic_defense.res
          Debug\AIHandler.obj
@@ -54,6 +28,7 @@
          Debug\SoundObject.obj
          Debug\texture_manager.obj
          Debug\tga.obj
+         Debug\Threads.obj
          Debug\timer.obj
          Debug\tools.obj
          Epic_defense.vcxproj -> C:\Users\anato_000\Dropbox\Программирование\C++\Epic-Defense\Epic_defense\Debug\Epic_defense.exe
@@ -61,4 +36,4 @@
 
 Построение успешно завершено.
 
-Затраченное время: 00:00:01.63
+Затраченное время: 00:00:01.65

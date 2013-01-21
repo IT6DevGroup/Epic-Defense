@@ -3,13 +3,16 @@
 #include "ModelTemplate.h"
 
 class ModelGoblin: public ModelTemplate {
+
 public:
+
+	static const GLint vcount = 6;
 
 	static const GLint width = 13;
 	static const GLint height = 23;
 
 	static const bool moving = true;
-	static const GLint speed = 2; // —корость от 0 до 10
+	static const GLshort speed = 3; // —корость от 0 до 10
 
 	static const GLint health = 100;
 
@@ -17,7 +20,6 @@ public:
 		TexturesNames.push_back("goblin.tga");
 	}
 	void initGraphic(float posX, float posY, float zOffset = 0.0f){
-		vcount = 6;
 		initTextures();
 		
 		vertex v1 = {0.0f + posX, height + posY, -GAME_DEFAULT_GROUND_DISTANCE, 0.0f,  1.0f };

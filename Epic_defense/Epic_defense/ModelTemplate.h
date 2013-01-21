@@ -10,6 +10,7 @@
 #define GAME_MODEL_WALL 5
 #define GAME_MODEL_GOBLIN 6
 #define GAME_MODEL_PATH 7
+#define GAME_MODEL_CASTLE 8
 
 #define GAME_DEFAULT_GROUND_DISTANCE 10.0f
 #define GAME_DEFAULT_GROUND_SIZE 1120.0f
@@ -50,14 +51,15 @@ struct vertex
 // ModelTemplate необходим дл€ задани€ параметров моделей по умолчанию, чтобы все они были разновидност€ми одной сущности
 class ModelTemplate {
 protected:
-	int vcount; //  ол-во вершин
 	int icount; //  ол-во индексов (сейчас не используетс€)
 	std::vector <std::string> TexturesNames; // “екстур может быть несколько: например, если требуетс€ учитывать поворот персонажа (в 2D)
 	VBOdata <vertex> vertices; 
 
-public:
 
-	// «начени€ дл€ моделей по умолчанию
+public:
+	static const GLint vcount = 6; //  ол-во вершин
+
+	// «начени€ дл€ моделей по умолчанию. ќни объ€влены в public, т.к. €вл€ютс€ константами и их всЄ равно нельз€ изменить
 
 	// Ўирина/высота картинки в пиксел€х
 	static const GLint width = 10;
@@ -65,7 +67,7 @@ public:
 
 	static const bool moving = false;
 	// —корость от 0 до 10
-	static const GLint speed = 1;
+	static const GLshort speed = 1;
 
 	static const GLint health = 100;
 
@@ -83,8 +85,12 @@ public:
 	GLsizeiptr getVertexSize(){
 		return sizeof(vertex);
 	}
-	int getVerticesCount(){
+	GLint getVerticesCount(){
 		return vcount;
+	}
+
+	static GLshort getSpeedValue(){
+		return speed;
 	}
 
 	// ћетод getTextureName нужен дл€ возможности получени€ различных текстур при каких-либо особых обсто€тельствах

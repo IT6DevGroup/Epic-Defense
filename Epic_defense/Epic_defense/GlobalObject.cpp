@@ -1,13 +1,15 @@
 #include "GlobalObject.h"
 
 
-CGlobalObject::CGlobalObject(GLint model, GLuint shaderProgram, GLfloat posX, GLfloat posY, GLfloat zOffset, GLint specialParam)
+CGlobalObject::CGlobalObject(GLint model, GLuint shaderProgram, GLfloat posX, GLfloat posY, GLint globalObjID, GLfloat zOffset, GLint specialParam)
 {
 	this->graphicObj = new CGraphicObject(model, shaderProgram, posX, posY, zOffset);
 	this->physicObj = new CPhysicObject(model);
 	this->gameObj = new CGameObject(model);
 	this->soundObj = new CSoundObject(model);
 	this->aiObj = new CAIObject(model, posX, posY, specialParam);
+
+	globalID = globalObjID;
 }
 
 CGlobalObject::~CGlobalObject(void)
@@ -28,4 +30,8 @@ CSoundObject* CGlobalObject::getSoundObject(){
 }
 CAIObject* CGlobalObject::getAIObject(){
 	return this->aiObj;
+}
+
+GLint CGlobalObject::getGlobalID(){
+	return globalID;
 }

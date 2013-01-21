@@ -1,0 +1,39 @@
+﻿Построение начато 21.01.2013 6:28:51.
+     1>Проект "C:\Users\Толя\Dropbox\Программирование\C++\Epic-Defense\Epic_defense\Epic_defense\Epic_defense.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>c:\users\толя\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\ModelSpawn.h(13): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>c:\users\толя\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\ModelWall.h(12): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>c:\users\толя\dropbox\программирование\c++\epic-defense\epic_defense\epic_defense\ModelWall.h(15): warning C4244: return: преобразование "const GLint" в "GLfloat", возможна потеря данных
+     1>main.cpp(60): warning C4244: инициализация: преобразование "float" в "LONG", возможна потеря данных
+     1>main.cpp(138): warning C4018: <: несоответствие типов со знаком и без знака
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Толя\Dropbox\Программирование\C++\Epic-Defense\Epic_defense\Release\Epic_defense.exe" /NOLOGO opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Толя\Dropbox\Программирование\C++\Epic-Defense\Epic_defense\Release\Epic_defense.pdb" /OPT:REF /OPT:ICF /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Толя\Dropbox\Программирование\C++\Epic-Defense\Epic_defense\Release\Epic_defense.lib" /MACHINE:X86 /SAFESEH Release\Epic_defense.res
+         Release\AIHandler.obj
+         Release\AIObject.obj
+         Release\EpicDefense.obj
+         Release\Game.obj
+         Release\GameObject.obj
+         Release\GlobalObject.obj
+         Release\GraphicObject.obj
+         Release\log.obj
+         Release\main.obj
+         Release\Mathematics.obj
+         Release\matrix.obj
+         Release\OpenGL.obj
+         Release\PhysicObject.obj
+         Release\Scene.obj
+         Release\shader_manager.obj
+         Release\SoundObject.obj
+         Release\texture_manager.obj
+         Release\tga.obj
+         Release\Threads.obj
+         Release\timer.obj
+         Release\tools.obj
+         Epic_defense.vcxproj -> C:\Users\Толя\Dropbox\Программирование\C++\Epic-Defense\Epic_defense\Release\Epic_defense.exe
+     1>Построение проекта "C:\Users\Толя\Dropbox\Программирование\C++\Epic-Defense\Epic_defense\Epic_defense\Epic_defense.vcxproj" завершено (целевые объекты Build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:02.39

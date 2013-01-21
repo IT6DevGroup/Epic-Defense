@@ -3,6 +3,8 @@
 
 CGameObject::CGameObject(GLint model, GLint specialParam)
 {
+
+	
 switch(model){
 	case GAME_MODEL_TREE:
 		{
@@ -32,6 +34,8 @@ switch(model){
 		{
 			ModelGoblin *goblin;
 			goblin = new ModelGoblin();
+
+			//mesh.health = ModelGoblin::
 
 			delete goblin;
 		}

@@ -6,7 +6,8 @@ class CGameObject
 {
 	// MESH - особая структура для хранения всех необходимых данных, полученных из модели
 	struct GAME_MESH {
-
+		GLshort speed;
+		GLint health;
 	};
 
 	GAME_MESH mesh;
